@@ -137,6 +137,18 @@ public class Generala {
             String formattedNumber = df.format(f);
             System.out.println("chance to win GENERALA with 1 to " + i + " chars in one number " + formattedNumber); // NADA
         }
+                // Chance to win
+            System.out.println("______"); // NADA
+        
+        for (int i = 6; i < 10; i++) {
+            double a = Math.pow(i, 5);
+            float f = (float) a;
+            f = (4*i*5) / f;
+            DecimalFormat df = new DecimalFormat("#.#####"); // Округляем до двух знаков после запятой
+            String formattedNumber = df.format(f);
+            System.out.println("chance to win CARE/POKER with 1 to " + i + " chars in one number " + formattedNumber); // NADA
+        }
+
     }
 
 }
