@@ -127,7 +127,7 @@ public class Generala {
         System.out.println(g.jugada("12346")); // NADA
         System.out.println(g.jugada("12456")); // NADA
         System.out.println(g.jugada("12556")); // NADA
-        // Chace to win
+        // Chance to win
 
         for (int i = 6; i < 10; i++) {
             double a = Math.pow(i, 5);
