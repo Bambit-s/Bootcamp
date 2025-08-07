@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
+import java.text.DecimalFormat;
 
 public class Generala {
     private String[] arrayDados;
@@ -126,7 +127,16 @@ public class Generala {
         System.out.println(g.jugada("12346")); // NADA
         System.out.println(g.jugada("12456")); // NADA
         System.out.println(g.jugada("12556")); // NADA
+        // Chace to win
 
+        for (int i = 6; i < 10; i++) {
+            double a = Math.pow(i, 5);
+            float f = (float) a;
+            f = i / f;
+            DecimalFormat df = new DecimalFormat("#.#######"); // Округляем до двух знаков после запятой
+            String formattedNumber = df.format(f);
+            System.out.println("chance to win GENERALA with 1 to " + i + " chars in one number " + formattedNumber); // NADA
+        }
     }
 
 }
