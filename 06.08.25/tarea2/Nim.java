@@ -107,5 +107,7 @@ public class Nim {
 
         Game game = new Game(player1.getName(), player2.getName(), scanner);
 
+        scanner.close();
+
     }
 }
