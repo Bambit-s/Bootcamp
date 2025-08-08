@@ -1,22 +1,17 @@
 public class Carta {
-	public String valor;
-	public String palo;
-	public Carta()
-	{
-		
-	}
-	
-	public Carta(String completo)
-    {
-        this.valor = String.valueOf(completo.charAt(0));
-        this.palo = String.valueOf(completo.charAt(1));
+    private String valor;
+    private String palo;
+
+    public Carta() {
+
     }
-    
-    String valorPalo()
-    {
+
+    public Carta(String str) {
+        this.palo = String.valueOf(str.charAt(0));
+        this.valor = String.valueOf(str.charAt(1));
+    }
+
+    public String valorPalo() {
         return this.valor + this.palo;
     }
-    
-	
 }
-
