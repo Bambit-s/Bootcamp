@@ -2,6 +2,8 @@ public class CardPack {
     String[] valores = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K" };
     String[] palos = { "S", "C", "H", "D" };
 
+    
+
     Carta[] cardPack;
 
     public CardPack() {

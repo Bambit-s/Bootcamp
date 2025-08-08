@@ -14,6 +14,7 @@ public class Main {
 
         CheckRules a = new CheckRules(hand);
         System.out.println(a.answer);
+        
         DecimalFormat df1 = new DecimalFormat("#.#########");
         DecimalFormat df2 = new DecimalFormat("#.##########");
 

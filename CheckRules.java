@@ -13,6 +13,23 @@ public class CheckRules {
         this.answer = check(fivevalues);
     }
 
+    private int ChooseVolor(String match_Valor) {
+
+        if (match_Valor.equals("T")) {
+            return 10;
+        } else if (match_Valor.equals("J")) {
+            return 11;
+        } else if (match_Valor.equals("Q")) {
+            return 12;
+        } else if (match_Valor.equals("K")) {
+            return 13;
+        } else if (match_Valor.equals("A")) {
+            return 14;
+        } else {
+            return Integer.valueOf(match_Valor);
+        }
+    }
+
     private String check(Carta[] pack) {
         countColor = 0;
         countPocker = 0;
@@ -22,25 +39,11 @@ public class CheckRules {
         int match_uno_Valor_int;
         int match_dos_Valor_int;
         int highest_card = 0;
-
-        for (Carta carta_uno : pack) {
-
+        for (Carta carta_uno : pack) { 
             String match_uno = carta_uno.valorPalo();
             int index_uno = 0;
             String match_uno_Valor = match_uno.substring(0, 1);
-            if (match_uno_Valor.equals("T")) {
-                match_uno_Valor_int = 10;
-            } else if (match_uno_Valor.equals("J")) {
-                match_uno_Valor_int = 11;
-            } else if (match_uno_Valor.equals("Q")) {
-                match_uno_Valor_int = 12;
-            } else if (match_uno_Valor.equals("K")) {
-                match_uno_Valor_int = 13;
-            } else if (match_uno_Valor.equals("A")) {
-                match_uno_Valor_int = 14;
-            } else {
-                match_uno_Valor_int = Integer.valueOf(match_uno_Valor);
-            }
+            match_uno_Valor_int = ChooseVolor(match_uno_Valor);
 
             String match_uno_Calor = match_uno.substring(1, 2);
 
@@ -49,27 +52,17 @@ public class CheckRules {
                 highest_card = match_uno_Valor_int;
                 highest_card_String = match_uno;
             }
-
+            
             for (Carta carta_dos : pack) {
                 String match_dos = carta_dos.valorPalo();
                 int index_two = 0;
                 String match_dos_Valor = match_dos.substring(0, 1);
 
-                if (match_dos_Valor.equals("T")) {
-                    match_dos_Valor_int = 10;
-                } else if (match_dos_Valor.equals("J")) {
-                    match_dos_Valor_int = 11;
-                } else if (match_dos_Valor.equals("Q")) {
-                    match_dos_Valor_int = 12;
-                } else if (match_dos_Valor.equals("K")) {
-                    match_dos_Valor_int = 13;
-                } else if (match_dos_Valor.equals("A")) {
-                    match_dos_Valor_int = 14;
-                } else {
-                    match_dos_Valor_int = Integer.valueOf(match_dos_Valor);
-                }
+                match_dos_Valor_int = ChooseVolor(match_dos_Valor);
 
                 String match_dos_Calor = match_dos.substring(1, 2);
+
+                
 
                 if (!(match_uno_Calor.equals(match_dos_Calor)) && (index_uno + 1 == index_two)) {
                     countEscaleraColor += 1;
