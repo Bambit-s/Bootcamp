@@ -1,34 +1,43 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class RandomHand {
-    private Carta[] deck;
     private Random random;
+    private ArrayList<Carta> randomhand;
+    private Carta[] array = {};
 
-    public RandomHand(Carta[] deck) {
-        this.deck = deck;
+    public RandomHand() {
         this.random = new Random();
+        this.randomhand = createFiveRandomCards();
     }
 
-    public Carta[] drawFiveCards() {
-        Carta[] hand = new Carta[5];
+    private ArrayList<Carta> createFiveRandomCards() {
+        CardPack deck = new CardPack();
+        deck.create();
         int count = 0;
-
+        ArrayList<Carta> randomhand = new ArrayList<>(Arrays.asList(this.array));
         while (count < 5) {
-            Carta candidate = deck[random.nextInt(deck.length)];
+            int randomCart = random.nextInt(deck.lengthArray());
+            deck.removeFromDeck(randomCart);
+            Carta randomasd = deck.get(randomCart);
+            randomhand.add(randomasd);
+            count += 1;
 
-            boolean exists = false;
-            for (int i = 0; i < count; i++) {
-                if (hand[i] != null && hand[i].valorPalo().equals(candidate.valorPalo())) {
-                    exists = true;
-                    break;
-                }
-            }
-
-            if (!exists) {
-                hand[count++] = candidate;
-            }
+            // System.out.println(randomasd.valorPalo());
+            // System.out.println(deck.get(randomCart));
+            // System.out.println(randomhand);
         }
-
-        return hand;
+        return randomhand;
     }
+
+    public void showFiveRandomCards() {
+        List<String> valores = new ArrayList<>();
+        for (Carta carta : randomhand) {
+            valores.add(carta.valorPalo());
+        }
+        System.out.println(valores);
+    }
+
 }
