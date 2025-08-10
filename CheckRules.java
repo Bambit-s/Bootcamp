@@ -1,115 +1,103 @@
 import java.util.ArrayList;
+// import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CheckRules {
+    Map<String, Integer> palosCount = new HashMap<>();
+    Map<String, Integer> valoresCount = new HashMap<>();
+    ArrayList<Integer> valoresInt = new ArrayList<>();
+    private String highestCard = "";
+    Map<String, Integer> dict = new HashMap<>() {
+        {
+            put("2", 2);
+            put("3", 3);
+            put("4", 4);
+            put("5", 5);
+            put("6", 6);
+            put("7", 7);
+            put("8", 8);
+            put("9", 9);
+            put("T", 10);
+            put("J", 11);
+            put("Q", 12);
+            put("K", 13);
+            put("A", 14);
+        }
+    };
     private ArrayList<Carta> fivevalues;
     public String answer;
-    private int countColor;
-    private int countPocker;
-    private int countEscaleraColor;
-    private int countEscalera;
-    private int countFull;
-    public String highest_card_String = "";
 
     public CheckRules(ArrayList<Carta> fivecards) {
         this.fivevalues = fivecards;
-        this.answer = check(fivevalues);
-
     }
 
-    private int ChooseVolor(String match_Valor) {
-
-        if (match_Valor.equals("T")) {
-            return 10;
-        } else if (match_Valor.equals("J")) {
-            return 11;
-        } else if (match_Valor.equals("Q")) {
-            return 12;
-        } else if (match_Valor.equals("K")) {
-            return 13;
-        } else if (match_Valor.equals("A")) {
-            return 14;
-        } else {
-            return Integer.valueOf(match_Valor);
-        }
+    public void showAnswer() {
+        this.answer = check(fivevalues);
+        System.out.println(this.answer);
     }
 
     private String check(ArrayList<Carta> pack) {
-        countColor = 0;
-        countPocker = 0;
-        countEscaleraColor = 0;
-        countEscalera = 0;
-        countFull = 0;
-        int match_uno_Valor_int;
-        int match_dos_Valor_int;
-        int highest_card = 0;
-        for (Carta carta_uno : pack) { 
-            String match_uno = carta_uno.valorPalo();
-            int index_uno = 0;
-            String match_uno_Valor = match_uno.substring(0, 1);
-            match_uno_Valor_int = ChooseVolor(match_uno_Valor);
+        int highestValue = 0;
 
-            String match_uno_Calor = match_uno.substring(1, 2);
+        for (Carta cart : pack) {
+            String cardone = cart.valorPalo();
+            String valor = cardone.substring(0, 1); //
+            String palo = cardone.substring(1, 2);
 
-            // for biggest card
-            if (match_uno_Valor_int > highest_card) {
-                highest_card = match_uno_Valor_int;
-                highest_card_String = match_uno;
+            palosCount.put(palo, palosCount.getOrDefault(palo, 0) + 1); //
+            valoresCount.put(valor, valoresCount.getOrDefault(valor, 0) + 1); //
+
+            int valueInt = dict.get(valor);
+            valoresInt.add(dict.get(valor));
+            if (valueInt > highestValue) {
+                highestValue = valueInt;
+                highestCard = cardone;
             }
-            
-            for (Carta carta_dos : pack) {
-                String match_dos = carta_dos.valorPalo();
-                int index_two = 0;
-                String match_dos_Valor = match_dos.substring(0, 1);
+        }
+        return escaleraAndColor();
 
-                match_dos_Valor_int = ChooseVolor(match_dos_Valor);
+    }
 
-                String match_dos_Calor = match_dos.substring(1, 2);
-
-                if (!(match_uno_Calor.equals(match_dos_Calor)) && (index_uno + 1 == index_two)) {
-                    countEscaleraColor += 1;
-                }
-                if ((match_uno_Valor_int + 1 == match_dos_Valor_int) && (index_uno + 1 == index_two)) {
-                    countEscalera += 1;
-                }
-                if (match_uno_Calor.equals(match_dos_Calor)) {
-                    countColor += 1;
-                }
-                if (match_uno_Valor_int == match_dos_Valor_int) {
-                    countFull += 1;
-                }
-                if (match_uno_Valor_int == match_dos_Valor_int) {
-                    countPocker += 1;
-                }
-                index_two++;
+    private String escaleraAndColor() {
+        if (Collections.frequency(valoresInt, 0) == 14 && valoresInt.get(0) == 14 && valoresInt.get(1) == 2 // 1...5
+                && valoresInt.get(2) == 3 && valoresInt.get(3) == 4 && valoresInt.get(4) == 5) {
+            valoresInt.set(0, 1);
+            if (palosCount.containsValue(5)) {
+                return "Escalera Color";
             }
-            index_uno++;
+            return "Escalera";
         }
-
-        if (countEscaleraColor == 4) {
-            return "\nEscalera Color!";
+        if (valoresInt.get(0) == 10 && valoresInt.get(1) == 11 && valoresInt.get(2) == 12 // 10...14
+                && valoresInt.get(3) == 13 && (Collections.frequency(valoresInt, 0) == 14)) {
+            if (palosCount.containsValue(5)) {
+                return "Escalera Color";
+            }
+            return "Escalera";
         }
-        if (countEscalera == 4) {
-            return "\nEscalera";
+        int c = 0;
+        for (int i = 0; i < valoresInt.size() - 1; i++) {
+            if ((valoresInt.get(i) - valoresInt.get(i + 1)) == -1) {
+                c += 1;
+            }
         }
-        if (countColor == 25) {
-            return "\nFive cards with the same COLOR";
+        if (c == 4) {
+            return "Escalera";
         }
-        if (countFull == 13) {
-            return "\n3 and 2 cards with the nombers ";
-        }
-        if (countFull == 11) {
-            return "\n3 cards with the nombers ";
-        }
-        if (countFull == 9) {
-            return "\n2 cards with 2 paras with the nombers ";
-        }
-        if (countFull == 7) {
-            return "\n2 cards with 1 para with the nombers ";
-        }
-        if (countPocker == 17) {
-            return "\n4 cards create Poker";
-        }
-        return "\nhighest is :" + highest_card_String;
+        if (palosCount.containsValue(5))
+            return "\n Color.";
+        if (valoresCount.containsValue(4))
+            return "\n Poker.";
+        if (valoresCount.containsValue(3) && valoresCount.containsValue(2)) //
+            return "\n Full.";
+        if (valoresCount.containsValue(3))
+            return "\n Trio.";
+        if (Collections.frequency(valoresCount.values(), 2) == 2)
+            return "\n Par doble.";
+        if (valoresCount.containsValue(2))
+            return "\n Par.";
+        return "\n Carta Alta " + this.highestCard;
     }
 
 }

@@ -3,9 +3,8 @@ public class Main {
 
         RandomHand randomHand = new RandomHand();
 
-        CheckRules a = new CheckRules(randomHand.randomhand);
-
-        System.out.println(a.answer);
+        CheckRules game = new CheckRules(randomHand.randomhand);
+        game.showAnswer();
 
         // DecimalFormat df1 = new DecimalFormat("#.#########");
         // DecimalFormat df2 = new DecimalFormat("#.##########");
