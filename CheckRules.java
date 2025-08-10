@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public class CheckRules {
-    private Carta[] fivevalues;
+    private ArrayList<Carta> fivevalues;
     public String answer;
     private int countColor;
     private int countPocker;
@@ -8,9 +10,10 @@ public class CheckRules {
     private int countFull;
     public String highest_card_String = "";
 
-    public CheckRules(Carta[] fivecards) {
+    public CheckRules(ArrayList<Carta> fivecards) {
         this.fivevalues = fivecards;
         this.answer = check(fivevalues);
+
     }
 
     private int ChooseVolor(String match_Valor) {
@@ -30,7 +33,7 @@ public class CheckRules {
         }
     }
 
-    private String check(Carta[] pack) {
+    private String check(ArrayList<Carta> pack) {
         countColor = 0;
         countPocker = 0;
         countEscaleraColor = 0;
@@ -61,8 +64,6 @@ public class CheckRules {
                 match_dos_Valor_int = ChooseVolor(match_dos_Valor);
 
                 String match_dos_Calor = match_dos.substring(1, 2);
-
-                
 
                 if (!(match_uno_Calor.equals(match_dos_Calor)) && (index_uno + 1 == index_two)) {
                     countEscaleraColor += 1;

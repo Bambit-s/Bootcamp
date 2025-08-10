@@ -44,11 +44,4 @@ public class CardPack {
         cardPack.remove(index);
     }
 
-    // public static void main(String[] args) {
-    // Carta[] arr = {};
-    // CardPack box = new CardPack(arr);
-    // ArrayList<Carta> a = box.getCardPack();
-
-    // System.out.println(a.get(1));
-    // }
 }

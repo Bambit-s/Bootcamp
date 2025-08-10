@@ -1,21 +1,11 @@
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
 
         RandomHand randomHand = new RandomHand();
-        randomHand.showFiveRandomCards();
 
-        // Carta[] hand = randomHand.drawFiveCards();
+        CheckRules a = new CheckRules(randomHand.randomhand);
 
-        // System.out.println("Random hand:");
-        // for (Carta card : hand) {
-        // System.out.print(card.valorPalo() + " ");
-        // }
-
-        // CheckRules a = new CheckRules(hand);
-        // System.out.println(a.answer);
+        System.out.println(a.answer);
 
         // DecimalFormat df1 = new DecimalFormat("#.#########");
         // DecimalFormat df2 = new DecimalFormat("#.##########");
