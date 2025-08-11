@@ -9,6 +9,8 @@ public class CheckRules {
     Map<String, Integer> valoresCount = new HashMap<>();
     ArrayList<Integer> valoresInt = new ArrayList<>();
     private String highestCard = "";
+    private ArrayList<Carta> fivevalues;
+    public String answer;
     Map<String, Integer> dict = new HashMap<>() {
         {
             put("2", 2);
@@ -26,8 +28,6 @@ public class CheckRules {
             put("A", 14);
         }
     };
-    private ArrayList<Carta> fivevalues;
-    public String answer;
 
     public CheckRules(ArrayList<Carta> fivecards) {
         this.fivevalues = fivecards;
@@ -61,8 +61,8 @@ public class CheckRules {
     }
 
     private String escaleraAndColor() {
-        if (Collections.frequency(valoresInt, 0) == 14 && valoresInt.get(0) == 14 && valoresInt.get(1) == 2 // 1...5
-                && valoresInt.get(2) == 3 && valoresInt.get(3) == 4 && valoresInt.get(4) == 5) {
+        if (valoresInt.get(0) == 14 && valoresInt.get(1) == 2 && valoresInt.get(2) == 3 && valoresInt.get(3) == 4   //A...4
+                && valoresInt.get(4) == 5) {
             valoresInt.set(0, 1);
             if (palosCount.containsValue(5)) {
                 return "Escalera Color";
@@ -70,7 +70,7 @@ public class CheckRules {
             return "Escalera";
         }
         if (valoresInt.get(0) == 10 && valoresInt.get(1) == 11 && valoresInt.get(2) == 12 // 10...14
-                && valoresInt.get(3) == 13 && (Collections.frequency(valoresInt, 0) == 14)) {
+                && valoresInt.get(3) == 13 && valoresInt.get(4) == 14) {
             if (palosCount.containsValue(5)) {
                 return "Escalera Color";
             }
@@ -82,9 +82,14 @@ public class CheckRules {
                 c += 1;
             }
         }
+
         if (c == 4) {
-            return "Escalera";
+            if (palosCount.containsValue(5)) {
+                return "Escalera Color";    //2s..6s
+            }
+            return "Escalera";  //2s..6d
         }
+
         if (palosCount.containsValue(5))
             return "\n Color.";
         if (valoresCount.containsValue(4))

@@ -10,7 +10,6 @@ public class RandomHand {
 
     public RandomHand() {
         this.random = new Random();
-        // this.randomhand = createFiveRandomCards();
         this.randomhand = createFiveRandomCards();
         this.showFiveRandomCards();
     }
@@ -23,11 +22,11 @@ public class RandomHand {
         int decklenght = deck.lengthArray();
 
         // Test (Hide While loop!)
-        // randomhand.add(new Carta("TS"));
-        // randomhand.add(new Carta("JC"));
-        // randomhand.add(new Carta("QD"));
-        // randomhand.add(new Carta("KS"));
-        // randomhand.add(new Carta("AS"));
+        // randomhand.add(new Carta("2S"));
+        // randomhand.add(new Carta("3S"));
+        // randomhand.add(new Carta("4S"));
+        // randomhand.add(new Carta("5S"));
+        // randomhand.add(new Carta("6S"));
 
         while (count < 5) {
             int randomCart = random.nextInt(decklenght - 1);
