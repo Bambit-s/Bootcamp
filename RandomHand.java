@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class RandomHand {
     private Random random;
-    public ArrayList<Carta> randomhand;
+    private ArrayList<Carta> randomhand;
     private Carta[] array = {};
 
     public RandomHand() {

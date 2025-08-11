@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CheckRules {
-    Map<String, Integer> palosCount = new HashMap<>();
-    Map<String, Integer> valoresCount = new HashMap<>();
-    ArrayList<Integer> valoresInt = new ArrayList<>();
+    private Map<String, Integer> palosCount = new HashMap<>();
+    private Map<String, Integer> valoresCount = new HashMap<>();
+    private ArrayList<Integer> valoresInt = new ArrayList<>();
     private String highestCard = "";
     private ArrayList<Carta> fivevalues;
-    public String answer;
+    private String answer;
     Map<String, Integer> dict = new HashMap<>() {
         {
             put("2", 2);

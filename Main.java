@@ -1,9 +1,12 @@
+import java.text.DecimalFormat;
+
 public class Main {
     public static void main(String[] args) {
 
         RandomHand randomHand = new RandomHand();
 
-        CheckRules game = new CheckRules(randomHand.randomhand);
+        CheckRules game = new CheckRules(randomHand.createFiveRandomCards());
+
         game.showAnswer();
 
         // DecimalFormat df1 = new DecimalFormat("#.#########");
