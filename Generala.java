@@ -135,7 +135,7 @@ public class Generala {
             f = i / f;
             DecimalFormat df = new DecimalFormat("#.#######"); 
             String formattedNumber = df.format(f);
-            System.out.println("chance to win GENERALA with 1 to " + i + " chars in one number " + formattedNumber)
+            System.out.println("chance to win GENERALA with 1 to " + i + " chars in one number " + formattedNumber);
         }
                 // Chance to win
             System.out.println("______"); 
@@ -148,6 +148,8 @@ public class Generala {
             String formattedNumber = df.format(f);
             System.out.println("chance to win CARE/POKER with 1 to " + i + " chars in one number " + formattedNumber);
         }
+
+        // System.out.print("\033[2J");
 
     }
 
