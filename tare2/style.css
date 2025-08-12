@@ -63,6 +63,12 @@ img {
 
     
 }
+.image2:hover ~ .image3{
+    opacity:0;
+}
+.image2:hover ~ .image4{
+    opacity:0;
+}
 .image3{
     position: absolute;
     margin-top:180px;   
@@ -75,6 +81,10 @@ img {
     border:2px solid red;
 
     
+}
+
+.image3:hover ~ .image4{
+    opacity:0;
 }
 .image4{
     position: absolute;
