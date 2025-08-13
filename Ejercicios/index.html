@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="script" href="script.js"> -->
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ff69b4, #ffb6c1);
+            background-size: 400% 400%;
+            animation: rainbowMove 10s ease infinite;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes rainbowMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #calculator {
+            width: 240px;
+            max-width: 90vw;
+            margin: 0 auto;
+            background: rgba(255, 240, 245, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.6);
+            border: 3px solid #ff69b4;
+        }
+
+        #ansver,
+        #mistake {
+            background: white;
+            color: #ff69b4;
+            font-size: 2rem;
+
+            height: 56px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            border: 2px solid #ff69b4;
+            box-sizing: border-box;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-variant-numeric: tabular-nums;
+            box-shadow: inset 0 0 10px rgba(255, 105, 180, 0.3);
+
+        }
+
+        button {
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            color: white;
+            border: 2px solid #ff69b4;
+            font-size: 1.5rem;
+            padding: 15px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #ff69b4, #ff1493);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.8);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        br {
+            display: block;
+            content: "";
+            margin-top: 5px;
+        }
+    </style>
+
+    <div id="calculator">
+        <p id="ansver"></p>
+        <p id="mistake"></p>
+        <button id="number1">1</button>
+        <button id="number2">2</button>
+        <button id="number3">3</button><br>
+        <button id="number4">4</button>
+        <button id="number5">5</button>
+        <button id="number6">6</button><br>
+        <button id="number7">7</button>
+        <button id="number8">8</button>
+        <button id="number9">9</button><br>
+        <button id="number0">0</button>
+        <button id="Mus">+</button>
+        <button id="Menus">-</button><br>
+        <button id="Mul">*</button>
+        <button id="Div">/</button>
+        <button id="Equa">=</button><br>
+        <button id="C">C</button>
+        <button id="CE">CE</button>
+        <button style="font-size: 12px;" id="Dot">.</button>
+    </div>
+    <script>
+
+        const button1 = document.getElementById("number1");
+        const buttonNumber1 = button1.textContent;
+        button1.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber1;
+        }
+
+        const button2 = document.getElementById("number2");
+        const buttonNumber2 = button2.textContent;
+        button2.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber2;
+        }
+
+        const button3 = document.getElementById("number3");
+        const buttonNumber3 = button3.textContent;
+        button3.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber3;
+        }
+
+        const button4 = document.getElementById("number4");
+        const buttonNumber4 = button4.textContent;
+        button4.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber4;
+        }
+
+        const button5 = document.getElementById("number5");
+        const buttonNumber5 = button5.textContent;
+        button5.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber5;
+        }
+
+        const button6 = document.getElementById("number6");
+        const buttonNumber6 = button6.textContent;
+        button6.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber6;
+        }
+        const button7 = document.getElementById("number7");
+        const buttonNumber7 = button7.textContent;
+        button7.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber7;
+        }
+        const button8 = document.getElementById("number8");
+        const buttonNumber8 = button8.textContent;
+        button8.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber8;
+        }
+        const button9 = document.getElementById("number9");
+        const buttonNumber9 = button9.textContent;
+        button9.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber9;
+        }
+        const button0 = document.getElementById("number0");
+        const buttonNumber0 = button0.textContent;
+        button0.onclick = function () {
+            document.getElementById("ansver").innerHTML += buttonNumber0;
+        }
+
+        const buttonC = document.getElementById("C");
+        const buttonNumberC = buttonC.textContent;
+        buttonC.onclick = function () {
+            document.getElementById("ansver").innerHTML = "";
+            document.getElementById("mistake").innerHTML = "";
+        }
+
+        const buttonCE = document.getElementById("CE");
+        const buttonNumberCE = buttonCE.textContent;
+        buttonCE.onclick = function () {
+            let word = document.getElementById("ansver").innerHTML;
+            word = word.slice(0, word.length - 1);
+            document.getElementById("ansver").innerHTML = word;
+        }
+
+        const buttonDot = document.getElementById("Dot");
+        const buttonNumberDot = buttonDot.textContent;
+        buttonDot.onclick = function () {
+            var a = document.getElementById("ansver").innerHTML;
+            if ((a.slice(-1) == ".")) {
+                a = a.slice(0, a.length - 1);
+                return document.getElementById("ansver").innerHTML = a + ".";
+            }
+            for (let st of a) {
+                if (st === ".") {
+                    return document.getElementById("ansver").innerHTML = "0.";
+                }
+            }
+            return document.getElementById("ansver").innerHTML = a + ".";
+
+        }
+
+        const buttonMus = document.getElementById("Mus");
+        const buttonNumberMus = buttonMus.textContent;
+        buttonMus.onclick = function () {
+            Equa();
+            document.getElementById("mistake").innerHTML = "";
+            var a = document.getElementById("ansver").innerHTML;
+            if ((a.slice(-1) == "/") || (a.slice(-1) == "-") || (a.slice(-1) == "+") || (a.slice(-1) == "*")) {
+                a = a.slice(0, a.length - 1);
+                document.getElementById("ansver").innerHTML = a + "+";
+            }
+            else {
+                document.getElementById("ansver").innerHTML = a + "+";
+            }
+        }
+
+        const buttonMenus = document.getElementById("Menus");
+        const buttonNumberMenus = buttonMenus.textContent;
+        buttonMenus.onclick = function () {
+            Equa();
+            document.getElementById("mistake").innerHTML = "";
+            var a = document.getElementById("ansver").innerHTML;
+            if ((a.slice(-1) == "/") || (a.slice(-1) == "-") || (a.slice(-1) == "+") || (a.slice(-1) == "*")) {
+                a = a.slice(0, a.length - 1);
+                document.getElementById("ansver").innerHTML = a + "-";
+            }
+            else {
+                document.getElementById("ansver").innerHTML = a + "-";
+            }
+        }
+
+        const buttonMul = document.getElementById("Mul");
+        const buttonNumberMul = buttonMus.textContent;
+        buttonMul.onclick = function () {
+            Equa();
+            document.getElementById("mistake").innerHTML = "";
+            var a = document.getElementById("ansver").innerHTML;
+            if ((a.slice(-1) == "/") || (a.slice(-1) == "-") || (a.slice(-1) == "+") || (a.slice(-1) == "*")) {
+                a = a.slice(0, a.length - 1);
+                document.getElementById("ansver").innerHTML = a + "*";
+            }
+            else {
+                document.getElementById("ansver").innerHTML = a + "*";
+            }
+        }
+
+        const buttonDiv = document.getElementById("Div");
+        const buttonNumberDiv = buttonDiv.textContent;
+        buttonDiv.onclick = function () {
+            Equa();
+            document.getElementById("mistake").innerHTML = "";
+            var a = document.getElementById("ansver").innerHTML;
+            if ((a.slice(-1) == "/") || (a.slice(-1) == "-") || (a.slice(-1) == "+") || (a.slice(-1) == "*")) {
+                a = a.slice(0, a.length - 1);
+                document.getElementById("ansver").innerHTML = a + "/";
+            }
+            else {
+                document.getElementById("ansver").innerHTML = a + "/";
+            }
+        }
+
+        const buttonEqua = document.getElementById("Equa");
+        const buttonNumberEqua = buttonEqua.textContent;
+
+        buttonEqua.onclick = () => Equa();
+
+        function Equa() {
+
+            document.getElementById("mistake").innerHTML = "";
+
+            let a = document.getElementById("ansver").innerHTML;
+            if (a.slice(-1) === "+" || a.slice(-1) === "-" || a.slice(-1) === "/" || a.slice(-1) === "*") {
+                return document.getElementById("mistake").innerHTML += "Last symbol not is num";
+            }
+
+            unarminus = 1;
+            if (a.substring(0, 1) === "-") {
+                a = a.substring(1, a.length);
+                unarminus = -1;
+            }
+
+            for (let char of a) {
+                if (char === "*" || char === "/" || char === "+" || char === "-") {
+                    var sym = a.indexOf(char); // index action
+                    var num1 = a.substring(0, sym);// 1 number
+                    var num2 = a.substring(num1.length + 1, a.length); // 2 number
+                    num1 = parseFloat(unarminus * num1);
+                    num2 = parseFloat(num2);
+                    if (char == "*") {
+                        ans = num2 * num1;
+                    }
+                    if (char == "/") {
+                        ans = num1 / num2;
+                    }
+                    if (char == "+") {
+                        ans = num1 + num2;
+                    }
+                    if (char == "-") {
+                        ans = num1 - num2;
+                    }
+                    // let string = ans.toString();
+                    // for (let st of string) {
+                    //     if (st === ".") {
+                    //         string = string.substring(0,string.indexOf(st)+2);
+                    //         ans = string;
+                    //     }
+                    // }
+                    document.getElementById("ansver").innerHTML = ans;
+
+                }
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
