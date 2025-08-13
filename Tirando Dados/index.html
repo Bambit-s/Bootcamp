@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="Start">Tirando Dados</button>
+    <section class="pole" id="square">
+        <section class="square" id="square1"></section>
+        <section class="square" id="square2"></section>
+        <section class="square" id="square3"></section>
+        <section class="square" id="square4"></section>
+        <section class="square" id="square5"></section>
+    </section>
+
+    <script>
+        function generate() {
+            document.getElementById("square1").innerHTML = Math.floor(Math.random() * 6 + 1);
+            document.getElementById("square2").innerHTML = Math.floor(Math.random() * 6 + 1);
+            document.getElementById("square3").innerHTML = Math.floor(Math.random() * 6 + 1);
+            document.getElementById("square4").innerHTML = Math.floor(Math.random() * 6 + 1);
+            document.getElementById("square5").innerHTML = Math.floor(Math.random() * 6 + 1);
+        }
+        function start() {
+            let c = 0;
+            let intervalId = setInterval(() => {
+                generate();
+                c++;
+                if (c >= 5) {
+                    clearInterval(intervalId);
+                }
+            }, 300);
+        }
+        const button = document.getElementById("Start");
+        button.onclick = () => start();
+
+    </script>
+    <!-- <canvas id="myCanvas" width="800" height="800"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        // Рисуем прямоугольник
+        ctx.fillStyle = "green";
+        ctx.fillRect(50, 200, 50, 50); // x, y, width, height
+
+        // Рисуем линию
+        ctx.beginPath();
+        ctx.moveTo(70, 10);
+        ctx.lineTo(120, 60);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(50, 200);
+        ctx.lineTo(100, 150);
+        ctx.stroke();
+    </script> -->
+</body>
+
+</html>
