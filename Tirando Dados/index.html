@@ -40,7 +40,7 @@
         button.onclick = () => start();
 
     </script>
-    <!-- <canvas id="myCanvas" width="800" height="800"></canvas>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
     <script>
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
@@ -49,17 +49,42 @@
         ctx.fillStyle = "green";
         ctx.fillRect(50, 200, 50, 50); // x, y, width, height
 
-        // Рисуем линию
-        ctx.beginPath();
-        ctx.moveTo(70, 10);
-        ctx.lineTo(120, 60);
-        ctx.stroke();
+        // // Рисуем линию
+        // ctx.beginPath();
+        // ctx.moveTo(70, 10);
+        // ctx.lineTo(120, 60);
+        // ctx.stroke();
+        // ctx.fillRect(50, 150, 50, 50);
+
 
         ctx.beginPath();
         ctx.moveTo(50, 200);
-        ctx.lineTo(100, 150);
+        ctx.lineTo(75, 175);
         ctx.stroke();
-    </script> -->
+
+        ctx.beginPath();
+        ctx.moveTo(75, 175);
+        ctx.lineTo(125, 175);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(125, 175);
+        ctx.lineTo(100, 200);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(125, 175);
+        ctx.lineTo(125, 225);
+        ctx.lineTo(100, 250);
+        ctx.stroke();
+
+        ctx.fillStyle = "black";
+        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 75, 225);
+        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 80, 190);
+        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 110, 215);
+
+
+    </script>
 </body>
 
 </html>

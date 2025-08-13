@@ -50,7 +50,7 @@
         #mistake {
             background: white;
             color: #ff69b4;
-            font-size: 2rem;
+            font-size: 1rem;
 
             height: 56px;
 
@@ -201,16 +201,23 @@
         const buttonNumberDot = buttonDot.textContent;
         buttonDot.onclick = function () {
             var a = document.getElementById("ansver").innerHTML;
-            if ((a.slice(-1) == ".")) {
-                a = a.slice(0, a.length - 1);
-                return document.getElementById("ansver").innerHTML = a + ".";
+
+            if (a === "") {
+                return document.getElementById("ansver").innerHTML = "0.";
             }
-            for (let st of a) {
-                if (st === ".") {
-                    return document.getElementById("ansver").innerHTML = "0.";
-                }
-            }
-            return document.getElementById("ansver").innerHTML = a + ".";
+            let lastOpIndex = Math.max(
+                a.lastIndexOf("+"),
+                a.lastIndexOf("-"),
+                a.lastIndexOf("*"),
+                a.lastIndexOf("/")
+            );
+
+
+            let currentNumber = a.substring(lastOpIndex + 1);
+            if (currentNumber.includes("."))
+                return;
+
+            document.getElementById("ansver").innerHTML = a + ".";
 
         }
 
@@ -284,6 +291,7 @@
             document.getElementById("mistake").innerHTML = "";
 
             let a = document.getElementById("ansver").innerHTML;
+
             if (a.slice(-1) === "+" || a.slice(-1) === "-" || a.slice(-1) === "/" || a.slice(-1) === "*") {
                 return document.getElementById("mistake").innerHTML += "Last symbol not is num";
             }
@@ -293,7 +301,7 @@
                 a = a.substring(1, a.length);
                 unarminus = -1;
             }
-
+            ans = "";
             for (let char of a) {
                 if (char === "*" || char === "/" || char === "+" || char === "-") {
                     var sym = a.indexOf(char); // index action
@@ -313,14 +321,21 @@
                     if (char == "-") {
                         ans = num1 - num2;
                     }
-                    // let string = ans.toString();
-                    // for (let st of string) {
-                    //     if (st === ".") {
-                    //         string = string.substring(0,string.indexOf(st)+2);
-                    //         ans = string;
-                    //     }
-                    // }
-                    if (parseInt(ans)>100000000000){
+
+                    console.log(ans);
+                    if (ans === Infinity) {
+                        document.getElementById("ansver").innerHTML = "";
+                        document.getElementById("mistake").innerHTML = "no div 0!";
+                        return 0;
+
+                    }
+                    if (isNaN(ans)) {
+                        console.log("NaN!");
+                        document.getElementById("ansver").innerHTML = "";
+                        document.getElementById("mistake").innerHTML = "NaN";
+                        return 0;
+                    }
+                    if (parseInt(ans) > 100000000000) {
                         return document.getElementById("ansver").innerHTML = "";
                     }
                     return document.getElementById("ansver").innerHTML = ans;
