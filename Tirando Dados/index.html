@@ -11,80 +11,22 @@
 <body>
     <button id="Start">Tirando Dados</button>
     <section class="pole" id="square">
-        <section class="square" id="square1"></section>
+        <section class="square" id="square1" src=""></section>
         <section class="square" id="square2"></section>
         <section class="square" id="square3"></section>
         <section class="square" id="square4"></section>
         <section class="square" id="square5"></section>
     </section>
-
-    <script>
-        function generate() {
-            document.getElementById("square1").innerHTML = Math.floor(Math.random() * 6 + 1);
-            document.getElementById("square2").innerHTML = Math.floor(Math.random() * 6 + 1);
-            document.getElementById("square3").innerHTML = Math.floor(Math.random() * 6 + 1);
-            document.getElementById("square4").innerHTML = Math.floor(Math.random() * 6 + 1);
-            document.getElementById("square5").innerHTML = Math.floor(Math.random() * 6 + 1);
-        }
-        function start() {
-            let c = 0;
-            let intervalId = setInterval(() => {
-                generate();
-                c++;
-                if (c >= 5) {
-                    clearInterval(intervalId);
-                }
-            }, 300);
-        }
-        const button = document.getElementById("Start");
-        button.onclick = () => start();
-
-    </script>
+    <section class="pole" id="squareCubes">
+        <section class="squareCube"><img src="1.png" alt="" id="square1foto"></section>
+        <section class="squareCube"><img src="2.png" alt="" id="square2foto"></section>
+        <section class="squareCube"><img src="3.png" alt="" id="square3foto"></section>
+        <section class="squareCube"><img src="4.png" alt="" id="square4foto"></section>
+        <section class="squareCube"><img src="5.png" alt="" id="square5foto"></section>
+    </section>
+    <script src="cube1.js"></script>
     <canvas id="myCanvas" width="800" height="800"></canvas>
-    <script>
-        let canvas = document.getElementById("myCanvas");
-        let ctx = canvas.getContext("2d");
-
-        // Рисуем прямоугольник
-        ctx.fillStyle = "green";
-        ctx.fillRect(50, 200, 50, 50); // x, y, width, height
-
-        // // Рисуем линию
-        // ctx.beginPath();
-        // ctx.moveTo(70, 10);
-        // ctx.lineTo(120, 60);
-        // ctx.stroke();
-        // ctx.fillRect(50, 150, 50, 50);
-
-
-        ctx.beginPath();
-        ctx.moveTo(50, 200);
-        ctx.lineTo(75, 175);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(75, 175);
-        ctx.lineTo(125, 175);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(125, 175);
-        ctx.lineTo(100, 200);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(125, 175);
-        ctx.lineTo(125, 225);
-        ctx.lineTo(100, 250);
-        ctx.stroke();
-
-        ctx.fillStyle = "black";
-        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 75, 225);
-        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 80, 190);
-        // ctx.fillText(Math.floor(Math.random() * 6 + 1), 110, 215);
-
-
-    </script>
+    <script src="cube2.js"></script>
 </body>
 
 </html>
