@@ -320,10 +320,14 @@
                     //         ans = string;
                     //     }
                     // }
-                    document.getElementById("ansver").innerHTML = ans;
+                    if (parseInt(ans)>100000000000){
+                        return document.getElementById("ansver").innerHTML = "";
+                    }
+                    return document.getElementById("ansver").innerHTML = ans;
 
                 }
             }
+
         }
 
 
