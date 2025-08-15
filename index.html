@@ -9,16 +9,22 @@
 </head>
 
 <body>
-    <h1>Player X</h1>
-    <h1>Player O</h1>
-    <h2>Scores</h2>
-    <div class="">
-        <p id="PlayerX">0</p>
-        <p id="PlayerO">0</p>
-
-        <div id="message" style="font-size:1.5rem; margin:10px; color:green;"></div>
+    <div class="menu">
+        <div class="players">
+            <div class="player">
+                <h2>Player X</h2>
+                <div id="PlayerX" class="score">0</div>
+            </div>
+            <div class="player">
+                <h2>Player O</h2>
+                <div id="PlayerO" class="score">0</div>
+            </div>
+        </div>
+        <div id="message" class="message"></div>
     </div>
-    <div id="game"></div>
+
+    <div id="game" class="game"></div>
+
     <script src="script.js"></script>
 </body>
 

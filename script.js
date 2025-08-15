@@ -55,6 +55,7 @@ class CountWin {
 
 class TurnsXO {
     constructor() {
+        this.gameisover = false;
         this.currentPlayer = "X";
         this.asd = new CountWin();
         this.a = new Field();
@@ -69,15 +70,16 @@ class TurnsXO {
         cell.addEventListener("click", (e) => {
             const cell = e.target;
 
+            if (this.gameisover) { return };
+
             if (cell.textContent === "") {
                 cell.textContent = this.currentPlayer;
                 let f = this.asd.countWin();
                 if (f === "Won") {
-                    
-                    const message = document.getElementById("message");
-                    message.textContent = `${this.currentPlayer} Won!`;
+                    this.gameisover = true;
+                    this.addWin(this.currentPlayer);
                     setTimeout(() => this.restart(), 2000);
-                    
+
                     return;
                 }
                 this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
@@ -86,7 +88,27 @@ class TurnsXO {
         });
     }
 
+    addWin(currentPlayer) {
+        const message = document.getElementById("message");
+
+        if (currentPlayer) {
+            if (currentPlayer === "X") {
+                const won = document.getElementById("PlayerX");
+                won.textContent = parseInt(won.textContent) + 1;
+            }
+            if (currentPlayer === "O") {
+                const won = document.getElementById("PlayerO");
+                won.textContent = parseInt(won.textContent) + 1;
+            }
+            message.textContent = `${currentPlayer} Won!`;
+        } else {
+            message.textContent = "";
+        }
+    }
+
     restart() {
+        this.gameisover = false;
+        this.addWin();
         this.currentPlayer = "X";
         this.a = new Field();
         this.a.printField();
@@ -101,4 +123,4 @@ var b = new TurnsXO();
 // хода игрока Х или О +
 // Когда ходит игрок просчитыватсья победа +
 // Если победа, проверить кто победил +
-// начать игру занаво.
+// начать игру занаво. + 
