@@ -51,7 +51,7 @@ body {
         min-height: 1.5rem;
     }
 
-    /* Поле игры */
+    /* Field of game */
     .game table {
         border-collapse: collapse;
         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
