@@ -1,8 +1,20 @@
+.game{
+width:200px;
+}
+.table{
+    color:red;
+    background-color: darkred;
+    border-collapse: collapse;
+}
 .line{
-    width:200px;
+
+    
 }
 .cell{
-    width:40px;
-    height:40px;
-    border: 2px solid red;
+    width:60px;
+    height:60px;
+    /* border: solid red; */
+    text-align:center;
+    font-size: 3rem;
+    
 }

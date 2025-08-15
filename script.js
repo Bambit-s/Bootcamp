@@ -3,26 +3,26 @@
 class Field {
 
     printField() {
-        document.write("<table>");
-        for (var l = 0; l < 3; l++) {
-            document.write("<tr class='line' id = 'line-", l, "'>");
-            for (var c = 0; c < 3; c++) {
-                document.write("<td class='cell' id = 'cell-", l, c, "'>1</td>");
+        const container = document.getElementById("game");
+        let html = "<table class='table'>";
+        for (let l = 0; l < 3; l++) {
+            html += `<tr class='line' id = 'line-${l}'>`;
+            for (let c = 0; c < 3; c++) {
+                html += `<td class='cell' id = 'cell-${l}${c}'></td>`;
             }
-            document.write("</tr>");
+            html += "</tr>";
         }
-        document.write("</table > ");
+        html += "</table >";
+        container.innerHTML = html;
     }
 
 }
-var a = new Field();
-a.printField();
+
 
 class CountWin {
 
     countWin() {
 
-        var cost = 0;
         let array = [];
         const wins = [
             [0, 1, 2],
@@ -44,7 +44,7 @@ class CountWin {
         }
         for (let combo of wins) {
             let [a, b, c] = combo;
-            if (array[a] != "1" && array[a] === array[b] && array[b] === array[c]) {
+            if (array[a] != "" && array[a] === array[b] && array[b] === array[c]) {
                 return "Won";
             }
         }
@@ -57,37 +57,44 @@ class TurnsXO {
     constructor() {
         this.currentPlayer = "X";
         this.asd = new CountWin();
+        this.a = new Field();
+        this.a.printField();
+        this.putXO();
     }
 
     putXO() {
 
+        let cell = document.getElementById("game");
 
-        for (let key1 = 0; key1 < 3; key1++) {
-            for (let key2 = 0; key2 < 3; key2++) {
-                let cellId = "cell-" + key1 + key2;
-                let cell = document.getElementById(cellId);
+        cell.addEventListener("click", (e) => {
+            const cell = e.target;
 
-                cell.addEventListener("click", () => {
-
-                    if (cell.textContent === "1") {
-                        cell.textContent = this.currentPlayer;
-                        let f = this.asd.countWin();
-                        console.log(this.currentPlayer + " " + f);
-                        if (f==="Won"){
-                            pass;
-                        }
-                        this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
-                    }
-
-
-                });
+            if (cell.textContent === "") {
+                cell.textContent = this.currentPlayer;
+                let f = this.asd.countWin();
+                if (f === "Won") {
+                    
+                    const message = document.getElementById("message");
+                    message.textContent = `${this.currentPlayer} Won!`;
+                    setTimeout(() => this.restart(), 2000);
+                    
+                    return;
+                }
+                this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
             }
-        }
+
+        });
+    }
+
+    restart() {
+        this.currentPlayer = "X";
+        this.a = new Field();
+        this.a.printField();
+        this.putXO();
     }
 }
 var b = new TurnsXO();
 
-b.putXO();
 
 
 // отрисовка поля +
