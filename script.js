@@ -17,7 +17,54 @@ class Field {
     }
 
 }
+class InputNames {
+    constructor() {
+        this.name1 = "";
+        this.name2 = "";
+        this.inputNames();
+    }
+    inputNames() {
+        do {
+            this.name1 = prompt("Name1:");
+            let names1 = document.getElementById("playerx");
+            names1.innerHTML = this.name1;
+            if ((this.name1.length) <= 0 || (this.name1.length) > 10) {
+                alert("Short name1!");
+            }
+        } while ((this.name1.length) <= 0);
+        do {
+            this.name2 = prompt("Name2:");
+            let names2 = document.getElementById("playero");
+            names2.innerHTML = this.name2;
+            if ((this.name2.length) <= 0 || (this.name2.length) > 10) {
+                alert("Short name2!");
+            }
+        } while ((this.name2.length) <= 0);
+    }
+}
+class ChooseSide {
+    constructor(name1, name2) {
+        this.chooseside(name1, name2);
+        this.side1 = "";
+        this.side2 = "";
+    }
+    chooseside(name1, name2) {
+        do {
+            this.side1 = prompt("X or O?");
+        } while ((this.side1 !== "X") && (this.side1 !== "O"));
 
+        if (this.side1 == "X") {
+            this.side2 = "O";
+        }
+        else {
+            this.side2 = "X";
+            let names1 = document.getElementById("playerx");
+            names1.innerHTML = name2;
+            let names2 = document.getElementById("playero");
+            names2.innerHTML = name1;
+        }
+    }
+}
 
 class CountWin {
 
@@ -67,6 +114,8 @@ class TurnsXO {
     constructor() {
         this.gameisover = false;
         this.currentPlayer = "X";
+        let key = new InputNames();
+        new ChooseSide(key.name1, key.name2);
         this.createrules = new CountWin();
         this.game = new Field();
         this.game.printField();
