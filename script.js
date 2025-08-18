@@ -25,19 +25,19 @@ class InputNames {
     }
     inputNames() {
         do {
-            this.name1 = prompt("Name1:");
+            this.name1 = prompt("Name one:");
             let names1 = document.getElementById("playerx");
             names1.innerHTML = this.name1;
             if ((this.name1.length) <= 0 || (this.name1.length) > 10) {
-                alert("Short name1!");
+                alert("Short Name one!");
             }
         } while ((this.name1.length) <= 0);
         do {
-            this.name2 = prompt("Name2:");
+            this.name2 = prompt("Name2 two:");
             let names2 = document.getElementById("playero");
             names2.innerHTML = this.name2;
             if ((this.name2.length) <= 0 || (this.name2.length) > 10) {
-                alert("Short name2!");
+                alert("Short Name two!");
             }
         } while ((this.name2.length) <= 0);
     }
