@@ -13,7 +13,7 @@ public class App {
             Connection conn = DriverManager.getConnection(url, user, password);
             return conn;
         } catch (SQLException e) {
-            System.err.println("Ошибка подключения: " + e.getMessage());
+            System.err.println("Error connection: " + e.getMessage());
             return null;
         }
     }

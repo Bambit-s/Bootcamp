@@ -78,7 +78,7 @@ WHERE
     );
 
 --7.	Consulta que muestre fecha de emisión de factura, nombre y apellido del cliente, nombres de productos de esa factura, cantidades compradas, nombre de tipo de factura de una factura específica--
-SELECT factura.fecha_emision, cliente.nombre, cliente.apellido, producto.nombre, factura_detalle.cantidad, factura_tipo.nombre
+SELECT factura.fecha_emision, cliente.nombre, cliente.apellido, producto.nombre as product_name, factura_detalle.cantidad, factura_tipo.nombre as factura_nombre
 FROM
     factura
     Inner JOIN factura_detalle ON factura_detalle.factura_id = factura.id
