@@ -1,0 +1,228 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.header {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+}
+
+.nav {
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto; 
+    margin-right: auto;
+    padding-left:1rem;
+    padding-right:1rem;
+}
+
+.logo a {
+    color: #0077cc;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #0077cc;
+}
+
+@media (max-width: 600px) {
+    .nav {
+
+        display: flex;
+        align-items: center;
+    }
+    .nav-links {
+        margin-top: 0.5rem;
+    }
+}
+
+section {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.hero {
+    text-align: center;
+    background: linear-gradient(to right, #e3f2fd, #f1f8ff);
+    padding: 4rem 1rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: auto;
+    color: #555;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project-card h4,
+.project-card p {
+    margin: 1rem;
+}
+
+.project-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.contact {
+    background: #f0f8ff;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.contact form {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    max-width: 450px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact input,
+.contact textarea,
+.contact button {
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact input,
+.contact textarea {
+    border: 1px solid #ccc;
+}
+
+.contact button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact button:hover {
+    background: #005fa3;
+}
+
+.bio {
+    max-width: 800px;
+    margin: auto;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.bio-card {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.bio-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bio-text {
+    flex: 1;
+    text-align: left;
+}
+
+.bio-list {
+    list-style: none;
+    padding: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f1f1f1;
+    color: #666;
+    font-size: 0.9rem;
+}
+.bio-text section {
+    margin-bottom: 20px;
+}
+
+.bio-text section h2 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #000000ff;
+    padding-bottom: 4px;
+}
+
+.bio-text section p,
+.bio-text section ul {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    margin-left: 10px;
+}
+
+.bio-text section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.bio-text section ul li {
+    margin-bottom: 6px;
+}
