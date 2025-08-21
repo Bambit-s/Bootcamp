@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1">
+ <title>cross-circle</title>
+ <desc>Created with Sketch Beta.</desc>
+
+ <g class="layer">
+  <title>Layer 1</title>
+  <g fill="none" fill-rule="evenodd" id="Page-1">
+   <g fill="#000000" id="Icon-Set-Filled" transform="translate(-570.000000, -1089.000000)">
+    <path d="m591.66,1109.24c0.39,0.39 0.39,1.03 0,1.42c-0.39,0.39 -1.03,0.39 -1.42,0l-4.23,-4.24l-4.27,4.27c-0.39,0.39 -1.03,0.39 -1.43,0c-0.39,-0.4 -0.39,-1.04 0,-1.43l4.27,-4.27l-4.24,-4.23c-0.39,-0.39 -0.39,-1.03 0,-1.42c0.39,-0.39 1.03,-0.39 1.42,0l4.23,4.24l4.3,-4.3c0.4,-0.39 1.03,-0.39 1.43,0c0.39,0.4 0.39,1.03 0,1.43l-4.3,4.3l4.24,4.23l0,0zm-5.66,-20.24c-8.84,0 -16,7.16 -16,16c0,8.84 7.16,16 16,16c8.84,0 16,-7.16 16,-16c0,-8.84 -7.16,-16 -16,-16l0,0z" fill="#ff0000" id="cross-circle"/>
+   </g>
+  </g>
+ </g>
+</svg>

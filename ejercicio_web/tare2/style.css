@@ -1,0 +1,101 @@
+img {
+    width: 200px;
+}
+.container{
+    border:2px solid black;
+    width:500px;
+    height:500px;
+}
+.image{
+    position:absolute;
+}
+.image:hover{
+    border:2px solid red;
+    /* position:absolute; */
+    z-index:1;
+
+     
+}
+.image:hover ~ .image1{
+    opacity:0;
+}
+.image:hover ~ .image2{
+    opacity:0;
+}
+.image:hover ~ .image3{
+    opacity:0;
+}
+.image:hover ~ .image4{
+    opacity:0;
+}
+.image1{
+    position: absolute;
+    margin-top:60px;   
+    margin-left: 50px;
+}
+
+.image1:hover{
+    z-index:1;
+    border:2px solid red;
+    /* position:absolute; */
+    
+}
+
+.image1:hover ~ .image2{
+    opacity:0;
+}
+.image1:hover ~ .image3{
+    opacity:0;
+}
+.image1:hover ~ .image4{
+    opacity:0;
+}
+.image2{
+    position: absolute;
+    margin-top:120px;   
+    margin-left: 100px;
+    
+}
+.image2:hover{
+    /* position:absolute; */
+    z-index:1;
+    border:2px solid red;
+
+    
+}
+.image2:hover ~ .image3{
+    opacity:0;
+}
+.image2:hover ~ .image4{
+    opacity:0;
+}
+.image3{
+    position: absolute;
+    margin-top:180px;   
+    margin-left: 150px;
+    
+}
+.image3:hover{
+    /* position:absolute; */
+    z-index:1;
+    border:2px solid red;
+
+    
+}
+
+.image3:hover ~ .image4{
+    opacity:0;
+}
+.image4{
+    position: absolute;
+    margin-top:240px;   
+    margin-left: 200px;
+    
+}
+.image4:hover{
+    /* position:absolute; */
+    z-index:1;
+    border:2px solid red;
+`
+    
+}

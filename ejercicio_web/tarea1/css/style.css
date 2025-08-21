@@ -1,0 +1,59 @@
+*{
+    font-family: arial, sans-serif;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+table{
+    /* width: 45rem; */
+    border-collapse: collapse;
+}
+th {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+tr {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;   
+  border-top: 0.05rem solid #ccc;
+  font-weight: 300;
+
+}
+.header{
+    color:grey;
+    text-align: justify;    
+    font-size:0.75rem;
+    
+}
+.header th{
+    font-weight: 400;
+    
+}
+.line{
+    margin-top:0.1rem;
+    margin-bottom:0.1rem;
+}
+.lineteam{
+    display: flex;
+}
+.head{
+   display: flex;
+   align-items: center;
+    padding-right:50px;  
+    max-width:15rem;
+}
+.sym{
+    margin-right:5px
+}
+.nomber{
+    margin:0rem;
+    padding:0rem;
+    align-items: center;
+    width:2rem;
+    height: 2rem;
+}
+
+.match{
+    /* display:flex; */
+}
