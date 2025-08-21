@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="script" href="script.js"> -->
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="Element"></p>
+    <p id="Element1"></p>
+    <script>
+        function test1() {
+            return console.log((-b + (b ** 2 - 4 * a * c)) / (2 * a));
+
+        }
+        function test2() {
+            return console.log((-b - (b ** 2 - 4 * a * c)) / (2 * a));
+        }
+        var a = prompt();
+        var b = prompt();
+        var c = prompt();
+
+        test1();
+        test2();
+
+        function test3() {
+            let key = prompt("Put yours String:");
+            document.getElementById("Element").innerHTML = key;
+        }
+        test3();
+
+        function test4() {
+            const randomNumber = Math.floor(Math.random() * 100 + 1);
+            document.getElementById("Element1").innerHTML = randomNumber;
+        }
+        test4()
+
+
+
+    </script>
+
+</body>
+
+</html>
