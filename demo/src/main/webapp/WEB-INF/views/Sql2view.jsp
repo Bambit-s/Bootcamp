@@ -3,17 +3,18 @@
 
 <html>
 <head>
-    <title>SQL 1 Results</title>
+    <title>SQL 2 Results</title>
 </head>
 <body>
-    <h1 style="color:red;">Top clientes con mas facturas</h1>
+    <h1 style="color:red;">Top clientes que mas gastaron</h1>
     <ul>
         <c:forEach var="c" items="${clientes}">
             <li>
-                Id: ${c.id} |
+                Client Id: ${c.clienteId} |
                 Nombre: ${c.nombre} |
                 Apellido: ${c.apellido} |
-                Cantidad Facturas: ${c.cantidadFacturas}
+                Factura Id: ${c.facturaId}
+                Suma Cantidad: ${c.sumaCantidad}
             </li>
         </c:forEach>
     </ul>
