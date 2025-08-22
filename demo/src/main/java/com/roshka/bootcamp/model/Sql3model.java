@@ -12,8 +12,8 @@ public class Sql3model {
     }
 
     public int getMonedaId() { return monedaId; }
-    public String getmonedaNombre() { return monedaNombre; }
-    public int getcantidadFacturas() { return cantidadFacturas; }
+    public String getMonedaNombre() { return monedaNombre; }
+    public int getCantidadFacturas() { return cantidadFacturas; }
 
     
 }

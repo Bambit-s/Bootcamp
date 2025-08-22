@@ -14,7 +14,6 @@ public class Index extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) 
             throws ServletException, IOException {
-        // Просто перенаправляем на JSP страницу
         req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, res);
     }
 }
