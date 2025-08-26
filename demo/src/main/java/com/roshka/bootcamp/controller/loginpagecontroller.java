@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-//
+@WebServlet("/loginpage")
 public class loginpagecontroller extends HttpServlet {
     private Connection connection;
 
-    public void init(ServletConfig config) {
+    public void init(ServletConfig config) throws ServletException {
         try {
             ServletContext context = config.getServletContext();
             Class.forName("org.postgresql.Driver");
@@ -26,8 +26,14 @@ public class loginpagecontroller extends HttpServlet {
                     context.getInitParameter("dbUser"),
                     context.getInitParameter("dbPassword"));
         } catch (Exception e) {
-            throw new RuntimeException("Error initializing database connection", e);
+            throw new ServletException("Error initializing database connection", e);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/views/loginpage.jsp").forward(req, res);
     }
 
     @Override
@@ -40,16 +46,16 @@ public class loginpagecontroller extends HttpServlet {
         String telefono = req.getParameter("telefono");
 
         try {
-            loginpagedao IndexDAO = new loginpagedao(connection);
-            loginpagemodel user = IndexDAO.loginuser(nombre, apellido, nro_cedula, telefono);
-            // System.out.println(user.getApellido());
+            loginpagedao loginDAO = new loginpagedao(connection);
+            loginpagemodel user = loginDAO.loginuser(nombre, apellido, nro_cedula, telefono);
             if (user != null) {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
-                req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, res);
+                session.setAttribute("userId", user.getId());
+                res.sendRedirect("factura");
             } else {
-                // req.setAttribute("error", "Usuario no encontrado");
-                req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, res);
+                req.setAttribute("error", "Usuario no encontrado");
+                req.getRequestDispatcher("/WEB-INF/views/loginpage.jsp").forward(req, res);
             }
 
         } catch (Exception e) {

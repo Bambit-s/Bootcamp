@@ -5,13 +5,13 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <servlet-class>com.roshka.bootcamp.HelloWorldServlet</servlet-class>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>com.roshka.bootcamp.Index</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/hola</url-pattern>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/Index</url-pattern>
   </servlet-mapping>
 
   <!--Change database here!!! Conext params-->
