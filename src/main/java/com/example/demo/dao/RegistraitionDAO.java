@@ -31,7 +31,6 @@ public class RegistraitionDAO {
             pstmt.setDate(6, fecha_ingreso);
             pstmt.setString(7, hashed);
             pstmt.executeUpdate();
-            System.out.println("Пользователь добавлен");
         } catch (SQLException e) {
             e.printStackTrace();
         }
