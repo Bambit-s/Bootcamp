@@ -8,6 +8,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Delete</th>
+        <th>Update</th>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -18,6 +19,11 @@
                 <form action="/usuario/delete/${user.id_usuario}" method="post">
                     <input type="hidden" name="_method" value="delete"/>
                     <button type="submit">Del ${user.id_usuario}</button>
+                </form>
+            </td>
+            <td>
+                <form action="/update/${user.id_usuario}" method="get">
+                    <button type="submit">Update ${user.id_usuario}</button>
                 </form>
             </td>
         </tr>
