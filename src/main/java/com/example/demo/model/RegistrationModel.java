@@ -1,32 +1,45 @@
 package com.example.demo.model;
-
 import java.sql.Date;
 
-public class RegistrationModel {
+// import java.sql.Date;
 
+public class RegistrationModel {
     String nombre;
     String apellido;
     int numeroSedula;
-    String correoElectronico;
-    String contasena;
+    String correo;
+    int idRol;
+    Date fecha_ingreso;// hoy
+    int antiguedad = 0;//
+    int dias_vacaciones = 0; //
+    boolean estado = true; //
+    String contrasena;
     String telefono;
-    int equipo;
-    int cargo;
+    int idEquipo;
+    int idCargo;
     Date fechaDeNacimento;
+    int dias_vacaciones_restante = 0;//
+    boolean requiere_cambio_contrasena = false;//
 
-    public RegistrationModel(String nombre, String apellido, int numeroSedula, String correoElectronico,
-            String contasena, String telefono, int equipo, int cargo, Date fechaDeNacimento) {
+    // public RegistrationModel(String nombre) {
+    // this.nombre = nombre;
+    // }
+
+    public RegistrationModel(String nombre, String apellido, int numeroSedula, String correo, int idRol,
+            String contrasena, String telefono, int idEquipo, int idCargo, Date fechaDeNacimento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numeroSedula = numeroSedula;
-        this.correoElectronico = correoElectronico;
-        this.contasena = contasena;
+        this.correo = correo;
+        this.idRol = idRol;
+        this.contrasena = contrasena;
         this.telefono = telefono;
-        this.equipo = equipo;
-        this.cargo = cargo;
+        this.idEquipo = idEquipo;
+        this.idCargo = idCargo;
         this.fechaDeNacimento = fechaDeNacimento;
     }
-    
+
+
     public String getNombre() {
         return nombre;
     }
@@ -39,20 +52,40 @@ public class RegistrationModel {
         return numeroSedula;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getCorreo() {
+        return correo;
+    }
+    public int getIdRol() {
+        return idRol;
+    }
+    public Date getFechaIngreso(){
+        long millis = System.currentTimeMillis();
+        fecha_ingreso = new Date(millis);
+        return fecha_ingreso;
+    }
+
+    public int getAntiguedad(){
+        return antiguedad;
+    }
+
+    public int getDiasVacaciones(){
+        return dias_vacaciones;
+    }
+
+    public boolean getEstado(){
+        return estado;
     }
 
     public String getContasena() {
-        return contasena;
+        return contrasena;
     }
 
     public int getEquipo() {
-        return equipo;
+        return idEquipo;
     }
 
     public int getCargo() {
-        return cargo;
+        return idCargo;
     }
 
     public String getTelefono() {
@@ -61,5 +94,13 @@ public class RegistrationModel {
 
     public Date getFechaDeNacimento() {
         return fechaDeNacimento;
+    }
+    
+    public int getDiasVacacionesRestante() {
+        return dias_vacaciones_restante;
+    }
+    
+    public boolean getRequiereCambioContrasena() {
+        return requiere_cambio_contrasena;
     }
 }

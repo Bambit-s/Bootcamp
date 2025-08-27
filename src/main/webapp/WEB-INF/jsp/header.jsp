@@ -8,3 +8,6 @@
 </head>
 <body>
     <h1>Header</h1>
+    <a href="/">Nuestra Impresa</a>
+    <a href="/registration">Registrar hoy!</a>
+    <a href="/login">Login</a>
