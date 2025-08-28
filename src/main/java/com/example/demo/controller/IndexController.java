@@ -43,7 +43,7 @@ public class IndexController {
         return indexDAO.getOneUser(id);
     }
 
-    // create /api/users Post
+    // create /api/users Post   
     @PostMapping("/api/users")
     @Operation(summary = "create user", description = "you can put info to create user")
     public UserModelIndex createOneUser(@RequestBody UserModelIndex user) {
