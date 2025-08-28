@@ -7,16 +7,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.sql.Date;
-// import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.IndexDAO;
 
 import com.example.demo.model.UserModelIndex;
-import org.springframework.ui.Model;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class IndexController {
@@ -24,13 +21,7 @@ public class IndexController {
     @Autowired
     private IndexDAO indexDAO;
 
-    // @GetMapping("/")
-    // public String index(Model model) {
-    // List<UserModelIndex> users = indexDAO.getAllUsers();
-    // model.addAttribute("users", users);
-    // model.addAttribute("pageTitle", "Main");
-    // return "index";
-    // }
+
 
     // read /api/users Get
     @GetMapping("/api/users")

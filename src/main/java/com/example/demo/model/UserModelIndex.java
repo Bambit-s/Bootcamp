@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.example.demo.deserialize.PeriodDeserializer;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class UserModelIndex {
     private int id_usuario;
