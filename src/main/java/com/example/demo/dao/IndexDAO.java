@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import org.postgresql.util.PGInterval;
 import org.springframework.stereotype.Repository;
+
 import com.example.demo.dao.RegistraitionDAO.PasswordUtil;
 import com.example.demo.model.UserModelIndex;
 
@@ -17,14 +18,32 @@ public class IndexDAO {
     private final String user = "postgres";
     private final String password = "12345678";
 
-    public List<UserModelIndex> getAllUsers() {
+    public List<UserModelIndex> getAllUsers(Integer rol, Integer equipo, Integer cargo) {
         List<UserModelIndex> users = new ArrayList<>();
-        String sql = "SELECT * FROM usuarios";
+        StringBuilder sql = new StringBuilder("SELECT * FROM usuarios WHERE 1=1");
+
+        if (rol != null && rol != 0) {
+            sql.append(" AND id_rol = ?");
+        }
+        if (equipo != null && equipo != 0) {
+            sql.append(" AND id_equipo = ?");
+        }
+        if (cargo != null && cargo != 0) {
+            sql.append(" AND id_cargo = ?");
+        }
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
 
+            int index = 1;
+            if (rol != null && rol != 0)
+                stmt.setObject(index++, rol, java.sql.Types.INTEGER);
+            if (equipo != null && equipo != 0)
+                stmt.setObject(index++, equipo, java.sql.Types.INTEGER);
+            if (cargo != null && cargo != 0)
+                stmt.setObject(index++, cargo, java.sql.Types.INTEGER);
+
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 UserModelIndex usermodel = new UserModelIndex();
 
