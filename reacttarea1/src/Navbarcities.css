@@ -1,0 +1,63 @@
+.states-dropdown {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  width: 260px;
+  position: relative;
+}
+
+.state-block {
+  /* width: 100%; */
+}
+
+.state-button {
+  width: 200px;
+  padding: 10px 14px;
+  background: #444;
+  color: white;
+  border: 1px solid #666;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.state-button:hover {
+  background: #555;
+}
+
+.cities-list {
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: #2b2b2b;
+  border: 1px solid #555;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.city-item {
+  padding: 6px;
+  font-size: 14px;
+  color: #ddd;
+  border-bottom: 1px solid #444;
+}
+
+.city-item:last-child {
+  border-bottom: none;
+}
+
+.city-item:hover {
+  background: #3a3a3a;
+  color: #fff;
+  cursor: pointer;
+}
+
+.empty {
+  color: #aaa;
+  font-style: italic;
+}
