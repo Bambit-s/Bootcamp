@@ -1,4 +1,12 @@
-:root {
+body{
+
+  background: linear-gradient(167.85deg, rgba(35, 174, 253, 0.7) 31.41%, rgba(2, 104, 206, 0.7) 83.74%, rgba(3, 28, 53, 0.7) 83.74%);
+
+}
+a{
+    text-decoration: none;
+}
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +73,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
