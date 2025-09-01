@@ -3,21 +3,51 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Usuarios</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        #usersList { list-style: none; padding: 0; }
-        .user-card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; margin-bottom: 10px; background-color: #f9f9f9; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); }
-        .user-card span { display: inline-block; margin-right: 10px; font-weight: bold; }
-        .filter { margin-bottom: 20px; }
-        .filter label { margin-right: 5px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #usersList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .user-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-card span {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        .filter label {
+            margin-right: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>All Users</h1>
-
+    <a href="/">Pagina principal</a>
+    <a href="/newuser">Nuevo usuario</a>
+    <h1>All Users1</h1>
     <div class="filter">
         <label>Rol ID: <input type="number" id="filterRol" min="0"></label>
         <label>Equipo ID: <input type="number" id="filterEquipo" min="0"></label>
@@ -25,9 +55,7 @@
         <button id="btnFilter">Filtrar</button>
         <button id="btnReset">Mostrar Todos</button>
     </div>
-
     <ul id="usersList"></ul>
-
     <script>
         function parsePeriod(periodStr) {
             const regex = /P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?/;
@@ -51,7 +79,7 @@
                 .then(response => response.json())
                 .then(users => {
                     const list = document.getElementById('usersList');
-                    list.innerHTML = ''; 
+                    list.innerHTML = '';
                     users.forEach(user => {
                         const li = document.createElement('li');
                         li.className = 'user-card';
@@ -69,6 +97,10 @@
                             <div><span>Días Vacaciones Restantes:</span> ${user.dias_vacaciones_restante}</div>
                             <div><span>Estado:</span> ${user.estado ? 'Activo' : 'Inactivo'}</div>
                             <div><span>Requiere Cambio Contraseña:</span> ${user.requiere_cambio_contrasena ? 'Sí' : 'No'}</div>
+                            <div style="margin-top:10px;">
+                                <button class="btnUpdate" data-id="${user.id_usuario}">Actualizar</button>
+                                <button class="btnDelete" data-id="${user.id_usuario}">Eliminar</button>
+                            </div>
                         `;
                         list.appendChild(li);
                     });
@@ -91,6 +123,22 @@
             document.getElementById('filterCargo').value = '';
             loadUsers();
         });
+        document.getElementById('usersList').addEventListener('click', (e) => {
+            const id = e.target.dataset.id;
+
+            if (e.target.classList.contains('btnDelete')) {
+                if (confirm("¿Seguro que deseas eliminar este usuario?")) {
+                    fetch(`/api/users/${id}`, { method: 'DELETE' })
+                        .then(res => {
+                            if (res.ok) loadUsers();
+                            else alert('Error al eliminar');
+                        });
+                }
+            } else if (e.target.classList.contains('btnUpdate')) {
+                window.location.href = `/newuser?id=${id}`;
+            }
+        });
+
     </script>
 </body>
 

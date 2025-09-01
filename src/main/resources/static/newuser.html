@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #usersList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .user-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-card span {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+        }
+
+        .filter label {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/">Pagina principal</a>
+    <a href="/newuser">Nuevo usuario</a>
+    <h2 id="formTitle">Crear Usuario</h2>
+
+    <form id="createUserForm" style="margin-bottom:20px;">
+        <input type="hidden" name="id_usuario" id="id_usuario">
+
+        <label>Nombre: <input type="text" name="nombre" required></label><br>
+        <label>Apellido: <input type="text" name="apellido" required></label><br>
+        <label>Nro Cédula: <input type="number" name="nro_cedula" required></label><br>
+        <label>Correo: <input type="email" name="correo" required></label><br>
+        <label>Contraseña: <input type="password" name="contrasena" required></label><br>
+        <label>Rol ID: <input type="number" name="id_rol" required></label><br>
+        <label>Equipo ID: <input type="number" name="id_equipo" required></label><br>
+        <label>Cargo ID: <input type="number" name="id_cargo" required></label><br>
+        <label>Teléfono: <input type="text" name="telefono"></label><br>
+        <label>Fecha Ingreso: <input type="date" name="fecha_ingreso" required></label><br>
+        <label>Fecha Nacimiento: <input type="date" name="fecha_nacimiento" required></label><br>
+        <label>Días Vacaciones: <input type="number" name="dias_vacaciones" min="0" required></label><br>
+        <label>Días Vacaciones Restantes: <input type="number" name="dias_vacaciones_restante" min="0"
+                required></label><br>
+        <label>Estado:
+            <select name="estado">
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+        </label><br>
+        <label>Requiere cambio contraseña:
+            <select name="requiere_cambio_contrasena">
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+        </label><br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            if (id) {
+                fetch(`/api/users/${id}`)
+                    .then(res => res.json())
+                    .then(user => {
+                        document.getElementById('formTitle').textContent = "Actualizar Usuario";
+
+                        for (const key in user) {
+                            if (document.querySelector(`[name="${key}"]`)) {
+                                document.querySelector(`[name="${key}"]`).value = user[key];
+                            }
+                        }
+
+                        // чтобы submit сделал PUT
+                        document.getElementById("id_usuario").value = id;
+                    });
+            }
+        });
+        const form = document.getElementById('createUserForm');
+        const formTitle = document.getElementById('formTitle');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const user = Object.fromEntries(formData.entries());
+
+            user.nro_cedula = parseInt(user.nro_cedula);
+            user.id_rol = parseInt(user.id_rol);
+            user.id_equipo = parseInt(user.id_equipo);
+            user.id_cargo = parseInt(user.id_cargo);
+            user.dias_vacaciones = parseInt(user.dias_vacaciones);
+            user.dias_vacaciones_restante = parseInt(user.dias_vacaciones_restante);
+            user.estado = user.estado === "true";
+            user.requiere_cambio_contrasena = user.requiere_cambio_contrasena === "true";
+
+            const userId = user.id_usuario;
+            let url = '/api/users';
+            let method = 'POST';
+
+            if (userId) { // if have id → will update
+                url = `/api/users/${userId}`;
+                method = 'PUT';
+            }
+
+            fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+            })
+                .then(res => {
+                    if (res.ok) {
+                        alert(userId ? "Usuario actualizado con éxito" : "Usuario creado con éxito");
+                        e.target.reset();
+                        document.getElementById('id_usuario').value = "";
+                        formTitle.textContent = "Crear Usuario";
+                        loadUsers();
+                    } else {
+                        alert("Error al guardar usuario");
+                    }
+                })
+                .catch(err => console.error("Error:", err));
+        });
+
+        // при клике "Update" в таблице заполняем форму
+        function editUser(user) {
+            formTitle.textContent = "Actualizar Usuario";
+
+            for (const key in user) {
+                if (form.elements[key]) {
+                    form.elements[key].value = user[key];
+                }
+            }
+        }
+
+        // пример для кнопки Update
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btnUpdate')) {
+                const id = e.target.dataset.id;
+                fetch(`/api/users/${id}`)
+                    .then(res => res.json())
+                    .then(user => editUser(user));
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -4,31 +4,64 @@ import java.time.LocalDate;
 import java.time.Period;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 
 public class UserModelIndex {
     private int id_usuario;
+
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     private String nombre;
+
+    @NotBlank(message = "El apellido es obligatorio")
+    @Size(min = 2, max = 50, message = "El apellido debe tener entre 2 y 50 caracteres")
     private String apellido;
+
+    @Min(value = 1000000, message = "El nro_cedula es demasiado corto")
+    @Max(value = 999999999, message = "El nro_cedula es demasiado largo")
     private int nro_cedula;
+
+    @Email(message = "Correo inválido")
+    @NotBlank(message = "El correo es obligatorio")
     private String correo;
+
+    @Positive(message = "id_rol debe ser positivo")
+    @Size(max = 7, message = "este es no id role")
     private int id_rol;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @NotNull(message = "La fecha de ingreso es obligatoria")
     private LocalDate fecha_ingreso;
 
     private Period antiguedad;
 
+    @Min(value = 0, message = "Los días de vacaciones no pueden ser negativos")
     private int dias_vacaciones;
+
     private boolean estado;
+
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String contrasena;
+
+    @Pattern(regexp = "^[0-9\\-+() ]{7,20}$", message = "Teléfono inválido")
     private String telefono;
+
+    @Positive(message = "id_equipo debe ser positivo")
+    @Size(max=36, message = "Este es no equipo")
     private int id_equipo;
+
+    @Positive(message = "id_cargo debe ser positivo")
+    @Size(max=55, message = "Este es no cargo")
     private int id_cargo;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @NotNull(message = "La fecha de nacimiento es obligatoria")
     private LocalDate fecha_nacimiento;
 
+    @Min(value = 0, message = "Los días restantes no pueden ser negativos")
     private int dias_vacaciones_restante;
+
     private boolean requiere_cambio_contrasena;
 
     public UserModelIndex() {

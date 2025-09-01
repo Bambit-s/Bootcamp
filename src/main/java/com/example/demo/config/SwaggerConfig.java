@@ -15,7 +15,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("User CRUD API")
                         .version("1.0")
-                        .description("REST API для управления пользователями")
+                        .description("REST API for rulling")
                         .license(new License().name("Apache 2.0")));
     }
 }

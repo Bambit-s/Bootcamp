@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.IndexDAO;
 
 import com.example.demo.model.UserModelIndex;
-
+import org.springframework.validation.BindingResult;
+// import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -43,11 +45,25 @@ public class IndexController {
         return indexDAO.getOneUser(id);
     }
 
-    // create /api/users Post   
+    // create /api/users Post
     @PostMapping("/api/users")
     @Operation(summary = "create user", description = "you can put info to create user")
-    public UserModelIndex createOneUser(@RequestBody UserModelIndex user) {
-        return indexDAO.createOneUser(user);
+    public ResponseEntity<?> createOneUser(
+            @Valid @RequestBody UserModelIndex user,
+            BindingResult result) {
+
+        if (result.hasErrors()) {
+            // collect errors
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> err.getField() + ": " + err.getDefaultMessage())
+                    .toList();
+
+            return ResponseEntity.badRequest().body(errors);
+        }
+
+        UserModelIndex created = indexDAO.createOneUser(user);
+        return ResponseEntity.ok(created);
     }
 
     // update /api/users/{id} Put
