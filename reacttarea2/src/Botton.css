@@ -1,0 +1,60 @@
+.style-group{
+    display: flex;
+    justify-content: center;
+}
+.style-variation{
+    text-align: center;    
+
+}
+.buttons-container{
+    display: flex;
+    flex-direction: column;
+}
+.botton1{
+   background: #5c4de0ff;
+   width: 80px;
+   height: 25px;
+   color: white;
+   border-radius: 10px;
+   border-color: white;
+}
+.botton2{
+   background: #998fefff;
+   width: 80px;
+   height: 25px;
+   color: white;
+   border-radius: 10px;
+   border-color: white;
+}
+.botton3{
+   background: #c7c3f1ff;
+   width: 80px;
+   height: 25px;
+   color: white;
+   border-radius: 10px;
+   border-color: white;
+}
+.botton4{
+   background: #ffffffff;
+   width: 80px;
+   height: 25px;
+   color: #5c4de0ff;;
+   border-radius: 10px;
+   border-color: #5c4de0ff;
+}
+.botton5{
+   background: #e0e0e0ff;
+   width: 80px;
+   height: 25px;
+   color: #5c4de0ff;;
+   border-radius: 10px;
+   border-color: #5c4de0ff;
+}
+.botton6{
+   background: #ffffffff;
+   width: 80px;
+   height: 25px;
+   color: #5c4de0ff;;
+   border-radius: 10px;
+   border-color: #5c4de0ff;
+}
