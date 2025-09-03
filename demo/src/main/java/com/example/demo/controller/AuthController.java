@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -20,6 +21,18 @@ public class AuthController {
     public AuthController(UserService userService, JwtService jwtService) {
         this.userService = userService;
         this.jwtService = jwtService;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        Optional<User> userOptional = userService.findById(id);
+
+        if (userOptional.isPresent()) {
+            userService.deleteById(id);
+            return ResponseEntity.ok("User with id " + id + " deleted successfully");
+        } else {
+            return ResponseEntity.status(404).body("User not found");
+        }
     }
 
     @PostMapping("/register")
@@ -44,8 +57,7 @@ public class AuthController {
                 id_equipo,
                 fecha_nacimiento,
                 antiguedad,
-                body.get("telefono")
-                );
+                body.get("telefono"));
 
         return ResponseEntity.ok(Map.of(
                 "id_usuario", user.getId_usuario(),

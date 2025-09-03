@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map; // Добавлен импорт Map
 import java.util.Optional; // Добавлен импорт Optional
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/user")
@@ -50,6 +52,12 @@ public class UserController {
             return ResponseEntity.status(404).body("User not found");
         }
     }
+    
+    // @GetMapping("/all")
+    // public String getMethodName(@RequestParam String param) {
+    //     return new String();
+    // }
+    
 
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(HttpServletRequest request, @RequestBody User updatedData) {

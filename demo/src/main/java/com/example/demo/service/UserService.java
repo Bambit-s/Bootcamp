@@ -44,6 +44,14 @@ public class UserService {
                 .filter(user -> passwordEncoder.matches(contrasena, user.getContrasena()));
     }
 
+    public Optional<User> findById(Long id_usuario) {
+        return userRepository.findById(id_usuario);
+    }
+
+    public void deleteById(Long id_usuario) {
+        userRepository.deleteById(id_usuario);
+    }
+
     public User save(User user) {
         return userRepository.save(user);
     }
