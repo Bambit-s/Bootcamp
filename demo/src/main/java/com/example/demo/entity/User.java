@@ -1,41 +1,194 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_usuario;
+
+    @Column(nullable = false, length = 50)
+    private String nombre;
+
+    @Column(nullable = false, length = 50)
+    private String apellido;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private int nro_cedula;
+
+    @Column(unique = true, nullable = false)
+    private String correo;
 
     @Column(nullable = false)
-    private String password;
+    private int id_rol;
 
-    public Long getId() {
-        return id;
+    @Column(nullable = false)
+    private LocalDate fecha_ingreso;
+
+    @Transient
+    private Period antiguedad;
+
+    @Column(nullable = false)
+    private int dias_vacaciones;
+
+    @Column(nullable = false)
+    private boolean estado;
+
+    @Column(nullable = false)
+    private String contrasena;
+
+    private String telefono;
+
+    private int id_equipo;
+
+    private int id_cargo;
+
+    // @Column(nullable = false)
+    private LocalDate fecha_nacimiento;
+
+    private int dias_vacaciones_restante;
+
+    private boolean requiere_cambio_contrasena;
+
+    // --- Getters & Setters ---
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getPassword() {
-        return password;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getNro_cedula() {
+        return nro_cedula;
+    }
+
+    public void setNro_cedula(int nro_cedula) {
+        this.nro_cedula = nro_cedula;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public int getId_rol() {
+        return id_rol;
+    }
+
+    public void setId_rol(int id_rol) {
+        this.id_rol = id_rol;
+    }
+
+    public LocalDate getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    public void setFecha_ingreso(LocalDate fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
+    }
+
+    public Period getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(Period antiguedad) {
+        this.antiguedad = antiguedad;
+    }
+
+    public int getDias_vacaciones() {
+        return dias_vacaciones;
+    }
+
+    public void setDias_vacaciones(int dias_vacaciones) {
+        this.dias_vacaciones = dias_vacaciones;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getId_equipo() {
+        return id_equipo;
+    }
+
+    public void setId_equipo(int id_equipo) {
+        this.id_equipo = id_equipo;
+    }
+
+    public int getId_cargo() {
+        return id_cargo;
+    }
+
+    public void setId_cargo(int id_cargo) {
+        this.id_cargo = id_cargo;
+    }
+
+    public LocalDate getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public int getDias_vacaciones_restante() {
+        return dias_vacaciones_restante;
+    }
+
+    public void setDias_vacaciones_restante(int dias_vacaciones_restante) {
+        this.dias_vacaciones_restante = dias_vacaciones_restante;
+    }
+
+    public boolean isRequiere_cambio_contrasena() {
+        return requiere_cambio_contrasena;
+    }
+
+    public void setRequiere_cambio_contrasena(boolean requiere_cambio_contrasena) {
+        this.requiere_cambio_contrasena = requiere_cambio_contrasena;
     }
 }

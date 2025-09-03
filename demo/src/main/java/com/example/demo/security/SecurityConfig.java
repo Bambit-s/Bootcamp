@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import org.springframework.security.config.Customizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .cors(Customizer.withDefaults()) 
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
@@ -36,16 +38,16 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-     @Bean
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")                     // все эндпоинты
-                        .allowedOrigins("http://localhost:5173") // твой фронт
-                        .allowedMethods("*")                     // GET, POST, PUT, DELETE и т.д.
-                        .allowedHeaders("*")                     // любые заголовки
-                        .allowCredentials(true);                 // если нужен cookie
+                registry.addMapping("/**")                     // all endpoints
+                        .allowedOrigins("http://localhost:5173") // my front
+                        .allowedMethods("*")                     // GET, POST, PUT, DELETE.
+                        .allowedHeaders("*")                     // all headers
+                        .allowCredentials(true);                 // for cookies
             }
         };
     }

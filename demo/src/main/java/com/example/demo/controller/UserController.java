@@ -27,16 +27,24 @@ public class UserController {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(401).body("Missing token");
         }
+
         String token = authHeader.substring(7);
         String username = jwtService.extractUsername(token);
-        
+
         Optional<User> userOptional = userService.findByUsername(username);
-        
+
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             return ResponseEntity.ok(Map.of(
-                "id", user.getId(),
-                "username", user.getUsername()
+                    "id", user.getId_usuario(),
+                    "nombre", user.getNombre(),
+                    "apellido", user.getApellido(),
+                    "correo", user.getCorreo(),
+                    "telefono", user.getTelefono(),
+                    "id_rol", user.getId_rol(),
+                    "id_cargo", user.getId_cargo(),
+                    "id_equipo", user.getId_equipo(),
+                    "token", token // возвращаем токен тоже
             ));
         } else {
             return ResponseEntity.status(404).body("User not found");

@@ -6,6 +6,8 @@ import com.example.demo.entity.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Map;
 
 @RestController
@@ -22,14 +24,38 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
-        User user = userService.register(body.get("username"), body.get("password"));
-        return ResponseEntity.ok(Map.of("id", user.getId(), "username", user.getUsername()));
+        int nro_cedula = Integer.parseInt(body.get("nro_cedula"));
+        int id_rol = Integer.parseInt(body.get("id_rol"));
+        int id_cargo = Integer.parseInt(body.get("id_cargo"));
+        int id_equipo = Integer.parseInt(body.get("id_equipo"));
+        LocalDate fecha_ingreso = LocalDate.parse(body.get("fecha_ingreso"));
+        LocalDate fecha_nacimiento = LocalDate.parse(body.get("fecha_nacimiento"));
+        Period antiguedad = Period.between(fecha_ingreso, LocalDate.now());
+
+        User user = userService.register(
+                body.get("nombre"),
+                body.get("apellido"),
+                nro_cedula,
+                body.get("contrasena"),
+                id_rol,
+                fecha_ingreso,
+                body.get("correo"),
+                id_cargo,
+                id_equipo,
+                fecha_nacimiento,
+                antiguedad,
+                body.get("telefono")
+                );
+
+        return ResponseEntity.ok(Map.of(
+                "id_usuario", user.getId_usuario(),
+                "nombre", user.getNombre()));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
-        return userService.login(body.get("username"), body.get("password"))
-                .map(user -> Map.of("token", jwtService.generateToken(user.getUsername())))
+        return userService.login(body.get("correo"), body.get("contrasena"))
+                .map(user -> Map.of("token", jwtService.generateToken(user.getCorreo())))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(401).body(Map.of("error", "Invalid credentials")));
     }

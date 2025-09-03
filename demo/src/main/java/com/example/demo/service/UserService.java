@@ -5,6 +5,8 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Optional;
 
 @Service
@@ -18,19 +20,29 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User register(String username, String password) {
+    public User register(String nombre, String apellido, int nro_cedula, String contrasena, int id_rol, LocalDate fecha_ingreso, String correo, int id_cargo,int id_equipo,LocalDate fecha_nacimiento, Period antiguedad, String telefono) {
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setNombre(nombre);
+        user.setApellido(apellido);
+        user.setNro_cedula(nro_cedula);
+        user.setId_rol(id_rol);
+        user.setFecha_ingreso(fecha_ingreso);
+        user.setContrasena(passwordEncoder.encode(contrasena));
+        user.setCorreo(correo);
+        user.setId_cargo(id_cargo);
+        user.setId_equipo(id_equipo);
+        user.setFecha_nacimiento(fecha_nacimiento);
+        user.setAntiguedad(antiguedad);
+        user.setTelefono(telefono);
         return userRepository.save(user);
     }
 
-    public Optional<User> login(String username, String password) {
-        return userRepository.findByUsername(username)
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()));
+    public Optional<User> login(String correo, String contrasena) {
+        return userRepository.findByCorreo(correo)
+                .filter(user -> passwordEncoder.matches(contrasena, user.getContrasena()));
     }
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<User> findByUsername(String nombre) {
+        return userRepository.findByCorreo(nombre);
     }
 }
