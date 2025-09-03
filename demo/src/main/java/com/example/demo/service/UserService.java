@@ -20,7 +20,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User register(String nombre, String apellido, int nro_cedula, String contrasena, int id_rol, LocalDate fecha_ingreso, String correo, int id_cargo,int id_equipo,LocalDate fecha_nacimiento, Period antiguedad, String telefono) {
+    public User register(String nombre, String apellido, int nro_cedula, String contrasena, int id_rol,
+            LocalDate fecha_ingreso, String correo, int id_cargo, int id_equipo, LocalDate fecha_nacimiento,
+            Period antiguedad, String telefono) {
         User user = new User();
         user.setNombre(nombre);
         user.setApellido(apellido);
@@ -40,6 +42,10 @@ public class UserService {
     public Optional<User> login(String correo, String contrasena) {
         return userRepository.findByCorreo(correo)
                 .filter(user -> passwordEncoder.matches(contrasena, user.getContrasena()));
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public Optional<User> findByUsername(String nombre) {
