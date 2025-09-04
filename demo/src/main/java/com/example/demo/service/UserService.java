@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Optional;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -35,6 +37,7 @@ public class UserService {
         user.setId_equipo(id_equipo);
         user.setFecha_nacimiento(fecha_nacimiento);
         user.setAntiguedad(antiguedad);
+        user.setEstado(true);
         user.setTelefono(telefono);
         return userRepository.save(user);
     }
@@ -58,5 +61,9 @@ public class UserService {
 
     public Optional<User> findByUsername(String nombre) {
         return userRepository.findByCorreo(nombre);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

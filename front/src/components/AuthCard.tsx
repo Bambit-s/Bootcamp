@@ -1,4 +1,3 @@
-// src/components/AuthCard.tsx
 import React from "react";
 
 interface AuthCardProps {
@@ -6,13 +5,11 @@ interface AuthCardProps {
   children: React.ReactNode;
 }
 
-const AuthCard: React.FC<AuthCardProps> = ({ title, children }) => {
-  return (
-    <div className="">
-      <h2 className="">{title}</h2>
-      {children}
-    </div>
-  );
-};
+const AuthCard: React.FC<AuthCardProps> = ({ title, children }) => (
+  <div className="auth-form">
+    <h2 className="text-lg font-bold mb-4">{title}</h2>
+    {children}
+  </div>
+);
 
 export default AuthCard;

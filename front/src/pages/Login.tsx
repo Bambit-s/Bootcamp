@@ -1,30 +1,36 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthCard from "../components/AuthCard";
 import InputField from "../components/InputField";
 import { login } from "../api/auth";
 
-const Login: React.FC = () => {
+interface LoginProps {
+  setToken: (token: string) => void;
+}
+
+const Login: React.FC<LoginProps> = ({ setToken }) => {
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const token = await login({ correo, contrasena });
       localStorage.setItem("token", token);
-      alert("Login successful!");
-    } catch (err) {
-      console.error(err);
+      setToken(token); // обновляем состояние App
+      navigate("/user/me");
+    } catch {
       alert("Login failed");
     }
   };
 
   return (
     <AuthCard title="Login">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <InputField type="text" placeholder="Correo" value={correo} onChange={setCorreo} />
         <InputField type="password" placeholder="Contraseña" value={contrasena} onChange={setContrasena} />
-        <button className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
+        <button className="btn btn-login">Login</button>
       </form>
     </AuthCard>
   );

@@ -1,25 +1,24 @@
-// src/App.tsx
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AuthPanel from "./components/AuthPanel";
+import Profile from "./pages/Profile";
 
 const App: React.FC = () => {
   const [token, setToken] = React.useState<string | null>(localStorage.getItem("token"));
 
   return (
-    <div className="p-4">
-      <AuthPanel token={token} setToken={setToken} />
-
-      {!token ? (
-        <div className="flex gap-8">
-          <Login />
-          <Register />
-        </div>
-      ) : (
-        <h2 className="mt-8">You are logged in!</h2>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/user/me"
+          element={token ? <Profile /> : <Navigate to="/login" replace />}
+        />
+        <Route path="*" element={<Navigate to={token ? "/user/me" : "/login"} replace />} />
+      </Routes>
+    </Router>
   );
 };
 

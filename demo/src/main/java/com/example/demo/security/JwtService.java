@@ -16,10 +16,11 @@ public class JwtService {
 
     private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
+    //take username=mail 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
-
+    //check by 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
@@ -32,12 +33,12 @@ public class JwtService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
-
+    //A universal method for extracting any field (claim) from a token.
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-
+    //Fully parses the token using Jwts.parserBuilder().  Verifies the signature using SecretKey.  Returns the Claims object with the useful data of the token.
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(secretKey)

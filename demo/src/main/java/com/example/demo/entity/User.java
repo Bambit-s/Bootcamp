@@ -25,7 +25,7 @@ public class User {
     private String correo;
 
     @Column(nullable = false)
-    private int id_rol;
+    private Integer id_rol;
 
     @Column(nullable = false)
     private LocalDate fecha_ingreso;
@@ -37,23 +37,23 @@ public class User {
     private int dias_vacaciones;
 
     @Column(nullable = false)
-    private boolean estado;
+    private Boolean estado;
 
     @Column(nullable = false)
     private String contrasena;
 
     private String telefono;
 
-    private int id_equipo;
+    private Integer id_equipo;
 
-    private int id_cargo;
+    private Integer id_cargo;
 
     // @Column(nullable = false)
     private LocalDate fecha_nacimiento;
 
-    private int dias_vacaciones_restante;
+    private Integer dias_vacaciones_restante;
 
-    private boolean requiere_cambio_contrasena;
+    private Boolean requiere_cambio_contrasena;
 
     // --- Getters & Setters ---
     public Long getId_usuario() {
@@ -96,11 +96,11 @@ public class User {
         this.correo = correo;
     }
 
-    public int getId_rol() {
+    public Integer getId_rol() {
         return id_rol;
     }
 
-    public void setId_rol(int id_rol) {
+    public void setId_rol(Integer id_rol) {
         this.id_rol = id_rol;
     }
 
@@ -128,11 +128,11 @@ public class User {
         this.dias_vacaciones = dias_vacaciones;
     }
 
-    public boolean isEstado() {
+    public Boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -152,19 +152,19 @@ public class User {
         this.telefono = telefono;
     }
 
-    public int getId_equipo() {
+    public Integer getId_equipo() {
         return id_equipo;
     }
 
-    public void setId_equipo(int id_equipo) {
+    public void setId_equipo(Integer id_equipo) {
         this.id_equipo = id_equipo;
     }
 
-    public int getId_cargo() {
+    public Integer getId_cargo() {
         return id_cargo;
     }
 
-    public void setId_cargo(int id_cargo) {
+    public void setId_cargo(Integer id_cargo) {
         this.id_cargo = id_cargo;
     }
 
@@ -176,19 +176,19 @@ public class User {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public int getDias_vacaciones_restante() {
+    public Integer getDias_vacaciones_restante() {
         return dias_vacaciones_restante;
     }
 
-    public void setDias_vacaciones_restante(int dias_vacaciones_restante) {
+    public void setDias_vacaciones_restante(Integer dias_vacaciones_restante) {
         this.dias_vacaciones_restante = dias_vacaciones_restante;
     }
 
-    public boolean isRequiere_cambio_contrasena() {
+    public Boolean isRequiere_cambio_contrasena() {
         return requiere_cambio_contrasena;
     }
 
-    public void setRequiere_cambio_contrasena(boolean requiere_cambio_contrasena) {
+    public void setRequiere_cambio_contrasena(Boolean requiere_cambio_contrasena) {
         this.requiere_cambio_contrasena = requiere_cambio_contrasena;
     }
 }

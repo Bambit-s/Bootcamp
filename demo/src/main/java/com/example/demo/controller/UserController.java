@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map; // Добавлен импорт Map
 import java.util.Optional; // Добавлен импорт Optional
-import org.springframework.web.bind.annotation.GetMapping;
-
 
 @RestController
 @RequestMapping("/user")
@@ -52,12 +50,11 @@ public class UserController {
             return ResponseEntity.status(404).body("User not found");
         }
     }
-    
+
     // @GetMapping("/all")
     // public String getMethodName(@RequestParam String param) {
-    //     return new String();
+    // return new String();
     // }
-    
 
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(HttpServletRequest request, @RequestBody User updatedData) {
@@ -97,6 +94,32 @@ public class UserController {
                     "token", token));
         } else {
             return ResponseEntity.status(404).body("User not found");
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body("Missing token");
+        }
+
+        String token = authHeader.substring(7);
+        String username = jwtService.extractUsername(token);
+
+        Optional<User> currentUserOpt = userService.findByUsername(username);
+
+        if (currentUserOpt.isEmpty()) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+
+        User currentUser = currentUserOpt.get();
+
+        // check by rol
+        if (currentUser.getId_rol() == 1 || currentUser.getId_rol() == 2) {
+            return ResponseEntity.ok(userService.findAll());
+        } else {
+            return ResponseEntity.status(403).body("Access denied: insufficient role");
         }
     }
 

@@ -11,7 +11,7 @@ export interface User {
     id_rol: number;
     id_cargo: number;
     id_equipo: number;
-    token: string;
+    token?: string;
 }
 
 interface AuthPanelProps {
@@ -21,6 +21,7 @@ interface AuthPanelProps {
 
 const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [allUsers, setAllUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [editMode, setEditMode] = useState(false);
     const [formData, setFormData] = useState<Partial<User>>({});
@@ -28,6 +29,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
     useEffect(() => {
         if (token) {
             fetchUserData();
+            fetchAllUsers();
         } else {
             setLoading(false);
         }
@@ -46,7 +48,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
             if (response.ok) {
                 const userData = await response.json();
                 setUser(userData);
-                setFormData(userData); // сразу заполняем форму
+                setFormData(userData);
             } else {
                 localStorage.removeItem("token");
                 setToken(null);
@@ -55,6 +57,28 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
             console.error("Error fetching user data:", error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchAllUsers = async () => {
+        if (!token) return;
+        try {
+            const response = await fetch("http://localhost:8080/user/all", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.ok) {
+                const users = await response.json();
+                setAllUsers(users);
+            } else {
+                console.error("Failed to fetch all users");
+            }
+        } catch (error) {
+            console.error("Error fetching all users:", error);
         }
     };
 
@@ -79,6 +103,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
                 const updatedUser = await response.json();
                 setUser(updatedUser);
                 setEditMode(false);
+                fetchAllUsers(); // reload users
             } else {
                 console.error("Failed to update user");
             }
@@ -91,6 +116,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
         localStorage.removeItem("token");
         setToken(null);
         setUser(null);
+        setAllUsers;
     };
 
     if (!token) return null;
@@ -103,7 +129,7 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
             <p>Role: {user?.id_rol} • Team: {user?.id_equipo}</p>
 
             {editMode ? (
-                <div>
+                <div className="profile">
                     <input
                         name="nombre"
                         value={formData.nombre || ""}
@@ -136,9 +162,22 @@ const AuthPanel: React.FC<AuthPanelProps> = ({ token, setToken }) => {
             )}
 
             <button onClick={handleLogout}>Logout</button>
+
+            <hr />
+            
+            {allUsers.length === 0 ? (
+                <p></p>
+            ) : (
+                <ul className="user-list">
+                    {allUsers.map(u => (
+                        <li key={u.id}>
+                            {u.nombre} {u.apellido} ({u.correo}) • Role: {u.id_rol}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
-
 
 export default AuthPanel;

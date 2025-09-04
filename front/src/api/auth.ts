@@ -1,25 +1,9 @@
-// src/api/auth.ts
-export interface LoginData {
-  correo: string;
-  contrasena: string;
-}
+import type { LoginData, RegisterData } from "../types";
 
-export interface RegisterData {
-  nombre: string;
-  apellido: string;
-  nro_cedula: number;
-  contrasena: string;
-  id_rol: number;
-  fecha_ingreso: string; // YYYY-MM-DD
-  correo: string;
-  id_cargo: number;
-  id_equipo: number;
-  fecha_nacimiento: string; // YYYY-MM-DD
-  telefono: string;
-}
+const BASE_URL = "http://localhost:8080";
 
-export const login = async (data: LoginData) => {
-  const res = await fetch("http://localhost:8080/auth/login", {
+export const login = async (data: LoginData): Promise<string> => {
+  const res = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -30,7 +14,7 @@ export const login = async (data: LoginData) => {
 };
 
 export const register = async (data: RegisterData) => {
-  const res = await fetch("http://localhost:8080/auth/register", {
+  const res = await fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -38,11 +22,3 @@ export const register = async (data: RegisterData) => {
   if (!res.ok) throw new Error("Register failed");
   return await res.json();
 };
-
-// export const getMe = async (token: string) => {
-//   const res = await fetch("http://localhost:8080/user/me", {
-//     headers: { Authorization: `Bearer ${token}` },
-//   });
-//   if (!res.ok) throw new Error("Unauthorized");
-//   return await res.json();
-// };
